@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.3.0-beta</Version>
+    <Version>0.0.1-beta</Version>
     <PackageId>Moov2.OrchardCore.Gallery</PackageId>
     <Title>Moov2 OrchardCore Gallery</Title>
     <Authors>Moov2</Authors>
@@ -14,6 +14,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="OrchardCore.ContentManagement" Version="1.0.0-beta3-70564" />
+    <PackageReference Include="OrchardCore.ContentManagement.Display" Version="1.0.0-beta3-70564" />
+    <PackageReference Include="OrchardCore.Data" Version="1.0.0-beta3-*" />
     <PackageReference Include="OrchardCore.Module.Targets" Version="1.0.0-beta3-*" />
   </ItemGroup>
 
