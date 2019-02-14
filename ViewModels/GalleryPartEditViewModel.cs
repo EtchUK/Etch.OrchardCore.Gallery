@@ -2,5 +2,6 @@
 {
     public class GalleryPartEditViewModel
     {
+        public string MediaItems { get; set; }
     }
 }

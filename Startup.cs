@@ -18,7 +18,6 @@ namespace Moov2.OrchardCore.Gallery
         public override void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IContentPartDisplayDriver, GalleryPartDisplay>();
-
             services.AddSingleton<ContentPart, GalleryPart>();
 
             services.AddScoped<IDataMigration, Migrations>();
