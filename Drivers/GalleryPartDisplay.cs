@@ -1,10 +1,13 @@
 ﻿using Microsoft.Extensions.Localization;
 using Moov2.OrchardCore.Gallery.Models;
 using Moov2.OrchardCore.Gallery.ViewModels;
+using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
 using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Moov2.OrchardCore.Gallery.Drivers
@@ -26,6 +29,16 @@ namespace Moov2.OrchardCore.Gallery.Drivers
         #endregion
 
 
+        public override IDisplayResult Display(GalleryPart part) {
+
+            var partJson = JsonConvert.DeserializeObject<List<GalleryPartItem>>(part.MediaItems).Cast<GalleryPartItem>().ToList();
+
+            return Initialize<GalleryPartDisplayViewModel>("GalleryPart_Display", model => {
+                model.MediaItems = partJson;
+            }).Location("Footer");
+        }
+
+
         public override IDisplayResult Edit(GalleryPart part, BuildPartEditorContext context)
         {
             return Initialize<GalleryPartEditViewModel>("GalleryPart_Fields_Edit", m =>
@@ -40,7 +53,7 @@ namespace Moov2.OrchardCore.Gallery.Drivers
 
             if (await updater.TryUpdateModelAsync(viewModel, Prefix))
             {
-                viewModel.MediaItems = part.MediaItems;
+                part.MediaItems = viewModel.MediaItems;
             }
 
             return Edit(part);

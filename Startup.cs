@@ -5,6 +5,7 @@ using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.Data.Migration;
 using OrchardCore.Modules;
+using OrchardCore.ResourceManagement;
 
 namespace Moov2.OrchardCore.Gallery
 {
@@ -17,6 +18,7 @@ namespace Moov2.OrchardCore.Gallery
 
         public override void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IResourceManifestProvider, ResourceManifest>();
             services.AddScoped<IContentPartDisplayDriver, GalleryPartDisplay>();
             services.AddSingleton<ContentPart, GalleryPart>();
 

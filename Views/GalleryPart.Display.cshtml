@@ -1,0 +1,23 @@
+﻿@using Moov2.OrchardCore.Gallery.ViewModels;
+@using OrchardCore.ResourceManagement
+
+@model GalleryPartDisplayViewModel
+@inject IResourceManager ResourceManager
+
+@{
+    ResourceManager.RegisterResource("stylesheet", "Gallery.Styles").AtHead();
+    ResourceManager.RegisterResource("script", "Gallery.Scripts").AtFoot();
+}
+
+@Model.MediaItems
+
+<div class="grid">
+    <div class="grid__row js-gallery">
+        <a class="grid__item" href="https://picsum.photos/800?random">
+            <img src="https://picsum.photos/800?random" title="" alt="" />
+        </a>
+        <a class="grid__item" href="https://picsum.photos/800?random">
+            <img src="https://picsum.photos/800?random" title="" alt="" />
+        </a>
+    </div>
+</div>

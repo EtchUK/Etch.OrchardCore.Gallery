@@ -14,10 +14,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="scripts\**" />
+    <EmbeddedResource Remove="scripts\**" />
+    <None Remove="scripts\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="OrchardCore.ContentManagement" Version="1.0.0-beta3-*" />
     <PackageReference Include="OrchardCore.ContentManagement.Display" Version="1.0.0-beta3-*" />
     <PackageReference Include="OrchardCore.Data" Version="1.0.0-beta3-*" />
     <PackageReference Include="OrchardCore.Module.Targets" Version="1.0.0-beta3-*" />
+    <PackageReference Include="OrchardCore.ResourceManagement.Abstractions" Version="1.0.0-beta3-*" />
   </ItemGroup>
 
 </Project>
