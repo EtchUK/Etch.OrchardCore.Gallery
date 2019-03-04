@@ -9,15 +9,21 @@
     ResourceManager.RegisterResource("script", "Gallery.Scripts").AtFoot();
 }
 
-@Model.MediaItems
-
 <div class="grid">
     <div class="grid__row js-gallery">
-        <a class="grid__item" href="https://picsum.photos/800?random">
-            <img src="https://picsum.photos/800?random" title="" alt="" />
-        </a>
-        <a class="grid__item" href="https://picsum.photos/800?random">
-            <img src="https://picsum.photos/800?random" title="" alt="" />
-        </a>
+        @foreach (var media in Model.MediaItems) {
+            switch (media.type) {
+                case 1:
+                <a class="grid__item" href="@media.Url">
+                    <img src="@media.Thumb" title="@media.Title" alt="@media.Title" />
+                </a>
+                break;
+                case 2:
+                <a class="grid__item" href="@media.Url">
+                    <img src="@media.Thumb" title="@media.Title" alt="@media.Title" />
+                </a>
+                break;
+            }
+        }
     </div>
 </div>
