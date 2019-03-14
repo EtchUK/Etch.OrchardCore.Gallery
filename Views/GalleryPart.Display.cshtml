@@ -12,7 +12,7 @@
 <ul class="js-gallery">
     @foreach (var media in Model.MediaItems) {
         <li>
-            @switch (media.type) {
+            @switch (media.Type) {
                 case 1:
                 <a class="grid__item" href="@media.Url">
                     <img src="@media.Thumb" title="@media.Title" alt="@media.Title" />
