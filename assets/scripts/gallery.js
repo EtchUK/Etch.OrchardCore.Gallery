@@ -31,7 +31,7 @@ const gallery = function ($el) {
 }
 
 const init = function () {
-    const selector = '.js-gallery, .wp-block-gallery'
+    const selector = '.js-gallery'
     let $elements = document.querySelectorAll(selector)
     let instances = []
     let instance
