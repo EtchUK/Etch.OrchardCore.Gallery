@@ -1,4 +1,5 @@
 ﻿@using Moov2.OrchardCore.Gallery.ViewModels;
+@using Moov2.OrchardCore.Gallery.Models;
 @using OrchardCore.ResourceManagement
 
 @model GalleryPartDisplayViewModel
@@ -13,12 +14,12 @@
     @foreach (var media in Model.MediaItems) {
         <li>
             @switch (media.Type) {
-                case 1:
+                case (int)GalleryPartType.Image:
                 <a class="grid__item" href="@media.Url">
                     <img src="@media.Thumb" title="@media.Title" alt="@media.Title" />
                 </a>
                 break;
-                case 2:
+                case (int)GalleryPartType.Video:
                 <a class="grid__item" href="@media.Url">
                     <img src="@media.Thumb" title="@media.Title" alt="@media.Title" />
                 </a>
