@@ -9,10 +9,10 @@
     ResourceManager.RegisterResource("script", "Gallery.Scripts").AtFoot();
 }
 
-<div class="grid">
-    <div class="grid__row js-gallery">
-        @foreach (var media in Model.MediaItems) {
-            switch (media.type) {
+<ul class="js-gallery">
+    @foreach (var media in Model.MediaItems) {
+        <li>
+            @switch (media.type) {
                 case 1:
                 <a class="grid__item" href="@media.Url">
                     <img src="@media.Thumb" title="@media.Title" alt="@media.Title" />
@@ -24,6 +24,6 @@
                 </a>
                 break;
             }
-        }
-    </div>
-</div>
+        </li>
+    }
+</ul>
