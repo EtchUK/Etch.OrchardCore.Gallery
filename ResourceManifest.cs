@@ -12,7 +12,7 @@ namespace Moov2.OrchardCore.Gallery {
 
             manifest
                 .DefineScript("Gallery.Scripts")
-                .SetUrl("/Moov2.OrchardCore.Gallery/js/bundle.js");
+                .SetUrl("/Moov2.OrchardCore.Gallery/Scripts/bundle.js");
         }
     }
 }

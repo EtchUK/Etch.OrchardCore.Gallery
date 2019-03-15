@@ -27,4 +27,8 @@
     <PackageReference Include="OrchardCore.ResourceManagement.Abstractions" Version="1.0.0-beta3-*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Assets\scripts\admin\" />
+  </ItemGroup>
+
 </Project>
