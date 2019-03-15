@@ -1,7 +1,10 @@
 const path = require('path');
 
 module.exports = {
-    entry: './Assets/js/admin/index.ts',
+    entry: {
+        'admin': './Assets/js/admin/index.ts',
+        'gallery': './Assets/js/gallery/index.ts'
+    },
     mode: 'development',
     module: {
         rules: [
@@ -16,7 +19,7 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js'],
     },
     output: {
-        filename: 'admin.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, './wwwroot/Scripts'),
     },
 };
