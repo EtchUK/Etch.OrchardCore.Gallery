@@ -6,7 +6,7 @@ Module for [Orchard Core](https://github.com/OrchardCMS/OrchardCore) for display
 
 [![Build Status](https://secure.travis-ci.org/moov2/Moov2.OrchardCore.Gallery.png?branch=master)](http://travis-ci.org/moov2/Moov2.OrchardCore.Gallery)
 
-*This module is currently under development and will be made available on NuGet when usable.
+*This module is currently under development and will be made available on NuGet when usable.*
 
 ## Installing
 
