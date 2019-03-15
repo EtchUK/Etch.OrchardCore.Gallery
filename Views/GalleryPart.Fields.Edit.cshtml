@@ -1,7 +1,9 @@
 ﻿@using Moov2.OrchardCore.Gallery.ViewModels;
 @model GalleryPartEditViewModel
 
-@*<fieldset class="form-group">
+<script asp-src="~/Moov2.OrchardCore.Gallery/Scripts/admin.js" asp-name="gallery" at="Foot"></script>
+
+<fieldset class="form-group">
     <div class="btn-group ">
         <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Add Media
@@ -9,7 +11,7 @@
         <div class="dropdown-menu">
         </div>
     </div>
-</fieldset>*@
+</fieldset>
 
 <fieldset class="form-group" asp-validation-class-for="MediaItems">
     <label asp-for="MediaItems">@T["Media"]</label>

@@ -19,9 +19,16 @@
     "mkdirp": "^0.5.1",
     "node-sass": "^4.9.0"
   },
+  "devDependencies": {
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3333",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3"
+  },
   "scripts": {
-    "develop": "npm run js && npm run css",
-    "css": "node-sass --include-path scss ./assets/styles/styles.scss ./wwwroot/css/styles.css",
-    "js": "mkdirp ./wwwroot/js && cross-env NODE_PATH=./node_modules/lightgallery.js/src/js:./node_modules/lg-video.js/dist browserify ./assets/scripts/gallery.js > ./wwwroot/js/bundle.js -t [babelify --presets [es2015] ]"
+    "build:admin": "webpack",
+    "build:site": "npm run js:site && npm run css:site",
+    "css:site": "node-sass --include-path scss ./assets/styles/styles.scss ./wwwroot/css/styles.css",
+    "js:site": "mkdirp ./wwwroot/js && cross-env NODE_PATH=./node_modules/lightgallery.js/src/js:./node_modules/lg-video.js/dist browserify ./assets/js/display/gallery.js > ./wwwroot/Scripts/bundle.js -t [babelify --presets [es2015] ]"
   }
 }
