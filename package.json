@@ -26,9 +26,8 @@
     "webpack-cli": "^3.2.3"
   },
   "scripts": {
-    "build:admin": "webpack",
-    "build:site": "npm run js:site && npm run css:site",
-    "css:site": "node-sass --include-path scss ./assets/styles/styles.scss ./wwwroot/css/styles.css",
-    "js:site": "mkdirp ./wwwroot/js && cross-env NODE_PATH=./node_modules/lightgallery.js/src/js:./node_modules/lg-video.js/dist browserify ./assets/js/display/gallery.js > ./wwwroot/Scripts/bundle.js -t [babelify --presets [es2015] ]"
+    "build": "webpack",
+    "dev": "webpack --watch",
+    "css:site": "node-sass --include-path scss ./assets/styles/styles.scss ./wwwroot/css/styles.css"
   }
 }
