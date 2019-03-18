@@ -13,3 +13,8 @@ Module for [Orchard Core](https://github.com/OrchardCMS/OrchardCore) for display
 [Download the source](https://github.com/moov2/Moov2.OrchardCore.Gallery/archive/master.zip) or clone the repository to your local machine. Add the project to your solution that contains an Orchard Core project and add a reference to Moov2.OrchardCore.Gallery. When running the Orchard Core project the module will be available to enable, which will expose a `GalleryPart` that can be attached to a content type.
 
 Once the module is in a usable state we'll make it available via NuGet.
+
+## Compiling Assets
+
+To compile both css and javascript for front end and back end run `npm run build`.  
+To compile and watch during devlopment run `npm run dev`.
