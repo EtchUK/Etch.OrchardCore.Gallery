@@ -86,6 +86,42 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./Assets/js/admin/Models/galleryModel.ts":
+/*!************************************************!*\
+  !*** ./Assets/js/admin/Models/galleryModel.ts ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nclass galleryModel {\r\n    constructor() {\r\n        this.description = '';\r\n        this.actionLabel = '';\r\n        this.action = () => { };\r\n    }\r\n}\r\nexports.galleryModel = galleryModel;\r\n\n\n//# sourceURL=webpack:///./Assets/js/admin/Models/galleryModel.ts?");
+
+/***/ }),
+
+/***/ "./Assets/js/admin/Modules/addImageUrl.ts":
+/*!************************************************!*\
+  !*** ./Assets/js/admin/Modules/addImageUrl.ts ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nconst galleryModel_1 = __webpack_require__(/*! ../Models/galleryModel */ \"./Assets/js/admin/Models/galleryModel.ts\");\r\nexports.addImageUrl = () => {\r\n    const model = new galleryModel_1.galleryModel();\r\n    model.description = 'This module allows users to add image to the gallery using URL';\r\n    model.actionLabel = 'Add image URL';\r\n    model.action = () => {\r\n        console.log('test add image URL');\r\n    };\r\n    return model;\r\n};\r\n\n\n//# sourceURL=webpack:///./Assets/js/admin/Modules/addImageUrl.ts?");
+
+/***/ }),
+
+/***/ "./Assets/js/admin/Modules/addVideoEmbed.ts":
+/*!**************************************************!*\
+  !*** ./Assets/js/admin/Modules/addVideoEmbed.ts ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nconst galleryModel_1 = __webpack_require__(/*! ../Models/galleryModel */ \"./Assets/js/admin/Models/galleryModel.ts\");\r\nexports.addVideoEmbed = () => {\r\n    const model = new galleryModel_1.galleryModel();\r\n    model.description = 'This module allows users to add video embed to the gallery';\r\n    model.actionLabel = 'Add Video Embed';\r\n    model.action = () => {\r\n        console.log('test add vodeo embed');\r\n    };\r\n    return model;\r\n};\r\n\n\n//# sourceURL=webpack:///./Assets/js/admin/Modules/addVideoEmbed.ts?");
+
+/***/ }),
+
 /***/ "./Assets/js/admin/index.ts":
 /*!**********************************!*\
   !*** ./Assets/js/admin/index.ts ***!
@@ -94,7 +130,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\n(() => {\r\n    console.log('Hello world!');\r\n})();\r\n\n\n//# sourceURL=webpack:///./Assets/js/admin/index.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nconst addImageUrl_1 = __webpack_require__(/*! ./Modules/addImageUrl */ \"./Assets/js/admin/Modules/addImageUrl.ts\");\r\nconst addVideoEmbed_1 = __webpack_require__(/*! ./Modules/addVideoEmbed */ \"./Assets/js/admin/Modules/addVideoEmbed.ts\");\r\nconst Vue = window.Vue;\r\nconst init = () => {\r\n    const models = [addImageUrl_1.addImageUrl(), addVideoEmbed_1.addVideoEmbed()];\r\n    new Vue({\r\n        el: '.gallery',\r\n        data: {\r\n            items: models,\r\n        },\r\n        methods: {\r\n            action: (action) => {\r\n                action.action();\r\n            },\r\n        },\r\n    });\r\n};\r\ninit();\r\n\n\n//# sourceURL=webpack:///./Assets/js/admin/index.ts?");
 
 /***/ })
 
