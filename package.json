@@ -21,10 +21,11 @@
     "mini-css-extract-plugin": "^0.5.0",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
-    "typescript": "^3.3.3333",
     "ts-loader": "^5.3.3",
+    "typescript": "^3.3.3333",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "webpack-fix-style-only-entries": "^0.2.1"
   },
   "scripts": {
     "build": "webpack",
