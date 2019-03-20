@@ -1,6 +1,6 @@
 ﻿import { addImageUrl } from './Modules/addImageUrl';
 import { addVideoEmbed } from './Modules/addVideoEmbed';
-import { galleryModel } from './Models/galleryModel';
+import { GalleryModel } from './Models/galleryModel';
 
 const Vue = (window as any).Vue;
 
@@ -13,8 +13,8 @@ const init = (): void => {
             items: models,
         },
         methods: {
-            action: (action: galleryModel) => {
-                action.action();
+            action: (model: GalleryModel) => {
+                model.action();
             },
         },
     });

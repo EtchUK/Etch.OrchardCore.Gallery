@@ -4,7 +4,7 @@
 <script asp-src="https://vuejs.org/js/vue.min.js" debug-src="https://vuejs.org/js/vue.js" asp-name="vuejs" at="Foot"></script>
 <script asp-src="~/Moov2.OrchardCore.Gallery/Scripts/admin.js" asp-name="gallery" at="Foot"></script>
 
-<fieldset class="form-group gallery">
+<fieldset class="form-group gallery" id="@Html.IdFor(m => m)">
     <div class="btn-group ">
         <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Add Media
@@ -13,12 +13,25 @@
             <a class="dropdown-item btn-sm" v-for="item in items" v-on:click="action(item)" href="javascript:;">{{item.actionLabel}}</a>
         </div>
     </div>
-</fieldset>
 
+    <input asp-for="MediaItems" class="form-control content-preview-text content-caption-text @Html.IdFor(m => m)-MediaItems" />
 
-<fieldset class="form-group" asp-validation-class-for="MediaItems">
-    <label asp-for="MediaItems">@T["Media"]</label>
-    <input asp-for="MediaItems" class="form-control content-preview-text content-caption-text" autofocus="autofocus" />
-    <span asp-validation-for="MediaItems"></span>
-    <span class="hint">@T["JSON for media."]</span>
+    <div class="modal @Html.IdFor(m => m)-ModalBody">
+        <div class="modal-dialog modal-lg media-modal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-accept="model">@T["OK"]</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@T["Cancel"]</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </fieldset>
