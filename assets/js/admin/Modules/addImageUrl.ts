@@ -26,9 +26,11 @@ export const addImageUrl = (): GalleryModel => {
         const $body = $modal.find('.modal-body');
         $body.html(
             '<fieldset class="form-group">\
-        <label for="addImageUrl">Image URL</label> \
-        <input type="text" id="addImageUrl" name="addImageUrl" class="form-control content-preview-text content-caption-text"> \
-        <span class="field-validation-valid"></span></fieldset>'
+            <label for="imageTitle">Title</label> \
+        <input type="text" id="imageTitle" name="imageTitle" class="form-control content-preview-text content-caption-text">\
+        <label for="imageUrl">URL</label> \
+        <input type="text" id="imageUrl" name="imageUrl" class="form-control content-preview-text content-caption-text">\
+        </fieldset>'
         );
 
         // Trigger cancel button
@@ -49,9 +51,9 @@ export const addImageUrl = (): GalleryModel => {
             const galleryJsonModel = new GalleryJsonModel($jsonInput);
             const galleryPartItem = new GalleryPartItem(
                 GalleryPartType.Image,
-                $('#addImageUrl').val() as string,
-                '',
-                $('#addImageUrl').val() as string
+                $('#imageUrl').val() as string,
+                $('#imageTitle').val() as string,
+                $('#imageUrl').val() as string
             );
             galleryJsonModel.add(galleryPartItem);
 
