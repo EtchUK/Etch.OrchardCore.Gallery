@@ -1,12 +1,13 @@
 ﻿import { addImageUrl } from './Modules/addImageUrl';
 import { addVideoEmbed } from './Modules/addVideoEmbed';
+import { addFromMediaPicker } from './Modules/addFromMediaPicker';
 import { GalleryModel } from './Models/galleryModel';
 import { GalleryJsonModel } from './Models/galleryJsonModel';
 import { GalleryPartItem } from './Models/galleryPartItem';
 import Vue from 'vue';
 
 const init = (): void => {
-    const models = [addImageUrl(), addVideoEmbed()];
+    const models = [addFromMediaPicker(), addImageUrl(), addVideoEmbed()];
 
     const id = $('.gallery').attr('id');
 
