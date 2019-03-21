@@ -1,20 +1,35 @@
 ﻿import { addImageUrl } from './Modules/addImageUrl';
 import { addVideoEmbed } from './Modules/addVideoEmbed';
 import { GalleryModel } from './Models/galleryModel';
-
-const Vue = (window as any).Vue;
+import { GalleryJsonModel } from './Models/galleryJsonModel';
+import { GalleryPartItem } from './Models/galleryPartItem';
+import Vue from 'vue';
 
 const init = (): void => {
     const models = [addImageUrl(), addVideoEmbed()];
 
+    // Get images
+    const getImages = (): [GalleryPartItem] => {
+        const id = $('.gallery').attr('id');
+        const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
+        const galleryJsonModel = new GalleryJsonModel($jsonInput).get();
+
+        return galleryJsonModel;
+    }
+
+    // Init vue
     new Vue({
         el: '.gallery',
         data: {
             items: models,
+            images: getImages(),
         },
         methods: {
             action: (model: GalleryModel) => {
                 model.action();
+            },
+            updateImages() {
+                this.images = getImages();
             },
         },
     });

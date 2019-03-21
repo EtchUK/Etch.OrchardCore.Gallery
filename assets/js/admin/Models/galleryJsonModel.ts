@@ -17,5 +17,15 @@ export class GalleryJsonModel {
         jsonParsed.push(galleryPartItem);
 
         this.jsonInput.val(JSON.stringify(jsonParsed));
+
+        // This is the only way we can trigger change
+        const e = document.createEvent('HTMLEvents');
+        e.initEvent('change', true, true);
+        this.jsonInput[0].dispatchEvent(e);
     };
+
+    get: () => [GalleryPartItem] = () => {
+        const jsonString = (this.jsonInput.val() as string) || '[]';
+        return JSON.parse(jsonString) as [GalleryPartItem];;
+    }
 }

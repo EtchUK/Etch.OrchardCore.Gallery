@@ -1,7 +1,6 @@
 ﻿@using Moov2.OrchardCore.Gallery.ViewModels;
 @model GalleryPartEditViewModel
 
-<script asp-src="https://vuejs.org/js/vue.min.js" debug-src="https://vuejs.org/js/vue.js" asp-name="vuejs" at="Foot"></script>
 <script asp-src="~/Moov2.OrchardCore.Gallery/Scripts/admin.js" asp-name="gallery" at="Foot"></script>
 
 <fieldset class="form-group gallery" id="@Html.IdFor(m => m)">
@@ -14,7 +13,14 @@
         </div>
     </div>
 
-    <input asp-for="MediaItems" class="form-control content-preview-text content-caption-text @Html.IdFor(m => m)-MediaItems" />
+    <input asp-for="MediaItems" v-on:change="updateImages" class="form-control content-preview-text content-caption-text @Html.IdFor(m => m)-MediaItems" />
+
+    <ul id="image-list" style="padding: 20px 0 0 0;">
+        <li v-for="image in images" style="max-width: 200px; display: inline-block;">
+            <img style="max-width: 100%;" :src=image.thumb />
+        </li>
+    </ul>
+
 
     <div class="modal @Html.IdFor(m => m)-ModalBody">
         <div class="modal-dialog modal-lg media-modal" role="document">
