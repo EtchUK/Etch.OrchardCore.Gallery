@@ -1,7 +1,7 @@
 ﻿import { GalleryModel } from '../Models/galleryModel';
 import { GalleryJsonModel } from '../Models/galleryJsonModel';
 import { GalleryPartItem } from '../Models/galleryPartItem';
-import { GalleryPartType } from '../Models/galleryPartType';
+import { EnumGalleryPartType, GalleryPartType } from '../Models/galleryPartType';
 
 export const addFromMediaPicker = (): GalleryModel => {
     const galleryModel = new GalleryModel();
@@ -62,7 +62,8 @@ export const addFromMediaPicker = (): GalleryModel => {
                 }
 
                 const galleryPartItem = new GalleryPartItem(
-                    GalleryPartType.Image,
+                    EnumGalleryPartType.Image,
+                    GalleryPartType.getName(EnumGalleryPartType.Image),
                     media.url,
                     media.name,
                     media.url

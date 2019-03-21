@@ -1,7 +1,7 @@
 ﻿import { GalleryModel } from '../Models/galleryModel';
 import { GalleryJsonModel } from '../Models/galleryJsonModel';
 import { GalleryPartItem } from '../Models/galleryPartItem';
-import { GalleryPartType } from '../Models/galleryPartType';
+import { EnumGalleryPartType, GalleryPartType } from '../Models/galleryPartType';
 
 export const addImageUrl = (): GalleryModel => {
     const galleryModel = new GalleryModel();
@@ -50,7 +50,8 @@ export const addImageUrl = (): GalleryModel => {
 
             const galleryJsonModel = new GalleryJsonModel($jsonInput);
             const galleryPartItem = new GalleryPartItem(
-                GalleryPartType.Image,
+                EnumGalleryPartType.Image,
+                GalleryPartType.getName(EnumGalleryPartType.Image),
                 $('#imageUrl').val() as string,
                 $('#imageTitle').val() as string,
                 $('#imageUrl').val() as string

@@ -1,7 +1,7 @@
 ﻿import { GalleryModel } from '../Models/galleryModel';
 import { GalleryJsonModel } from '../Models/galleryJsonModel';
 import { GalleryPartItem } from '../Models/galleryPartItem';
-import { GalleryPartType } from '../Models/galleryPartType';
+import { EnumGalleryPartType, GalleryPartType } from '../Models/galleryPartType';
 
 export const addVideoEmbed = (): GalleryModel => {
     const galleryModel = new GalleryModel();
@@ -50,7 +50,8 @@ export const addVideoEmbed = (): GalleryModel => {
             getEmbedThumb($('#embedUrl').val() as string).then(
                 (url: string) => {
                     const galleryPartItem = new GalleryPartItem(
-                        GalleryPartType.Video,
+                        EnumGalleryPartType.Video,
+                        GalleryPartType.getName(EnumGalleryPartType.Video),
                         $('#embedUrl').val() as string,
                         '',
                         url
