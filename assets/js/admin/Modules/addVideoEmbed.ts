@@ -41,7 +41,7 @@ export const addVideoEmbed = (): GalleryModel => {
             });
         });
 
-        // Trigger cancel button
+        // Trigger ok button
         const $okButton = $modal.find('button[data-accept="model"]').first();
         $okButton.on('click', () => {
             const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
