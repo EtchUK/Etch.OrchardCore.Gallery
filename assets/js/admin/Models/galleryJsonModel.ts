@@ -18,14 +18,28 @@ export class GalleryJsonModel {
 
         this.jsonInput.val(JSON.stringify(jsonParsed));
 
-        // This is the only way we can trigger change
-        const e = document.createEvent('HTMLEvents');
-        e.initEvent('change', true, true);
-        this.jsonInput[0].dispatchEvent(e);
+        this.triggerChange();
     };
 
     get: () => [GalleryPartItem] = () => {
         const jsonString = (this.jsonInput.val() as string) || '[]';
         return JSON.parse(jsonString) as [GalleryPartItem];;
+    };
+
+    delete: (index: number) => void = (index: number) => {
+        const jsonString = (this.jsonInput.val() as string) || '[]';
+        const galleryPartItems = JSON.parse(jsonString) as [GalleryPartItem];
+        galleryPartItems.splice(index, 1);
+
+        this.jsonInput.val(JSON.stringify(galleryPartItems));
+
+        this.triggerChange();
+    };
+
+    triggerChange: () => void = () => {
+        // This is the only way we can trigger change
+        const e = document.createEvent('HTMLEvents');
+        e.initEvent('change', true, true);
+        this.jsonInput[0].dispatchEvent(e);
     }
 }

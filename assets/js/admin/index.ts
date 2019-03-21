@@ -8,9 +8,10 @@ import Vue from 'vue';
 const init = (): void => {
     const models = [addImageUrl(), addVideoEmbed()];
 
+    const id = $('.gallery').attr('id');
+
     // Get images
     const getImages = (): [GalleryPartItem] => {
-        const id = $('.gallery').attr('id');
         const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
         const galleryJsonModel = new GalleryJsonModel($jsonInput).get();
 
@@ -31,6 +32,10 @@ const init = (): void => {
             updateImages() {
                 this.images = getImages();
             },
+            deleteImage(index: number) {
+                const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
+                new GalleryJsonModel($jsonInput).delete(index);
+            }
         },
     });
 };
