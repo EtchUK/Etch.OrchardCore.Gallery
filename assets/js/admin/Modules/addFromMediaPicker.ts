@@ -42,16 +42,22 @@ export const addFromMediaPicker = (): GalleryModel => {
             
             const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
 
+            const galleryJsonModel = new GalleryJsonModel($jsonInput);
+
+            const galleryPartItems = Array<GalleryPartItem>();
+
             mediaApp.selectedMedias.forEach((media:any) => {
-                const galleryJsonModel = new GalleryJsonModel($jsonInput);
                 const galleryPartItem = new GalleryPartItem(
                     GalleryPartType.Image,
                     media.url,
                     '',
                     media.url
                 );
-                galleryJsonModel.add(galleryPartItem); 
+
+                galleryPartItems.push(galleryPartItem);
             });
+
+            galleryJsonModel.addAll(galleryPartItems)
 
             $modal.hide();
             removeEventListener($modal);

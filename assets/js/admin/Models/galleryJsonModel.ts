@@ -21,6 +21,24 @@ export class GalleryJsonModel {
         this.triggerChange();
     };
 
+    addAll: (galleryPartItems: GalleryPartItem[]) => void = (galleryPartItems: GalleryPartItem[]) => {
+
+        if(galleryPartItems.length === 0) {
+            return;
+        }
+
+        const jsonString = (this.jsonInput.val() as string) || '[]';
+        const jsonParsed = JSON.parse(jsonString) as [GalleryPartItem];
+
+        galleryPartItems.forEach(galleryPartItem => {
+            jsonParsed.push(galleryPartItem);            
+        });
+
+        this.jsonInput.val(JSON.stringify(jsonParsed));
+
+        this.triggerChange();
+    };
+
     get: () => [GalleryPartItem] = () => {
         const jsonString = (this.jsonInput.val() as string) || '[]';
         return JSON.parse(jsonString) as [GalleryPartItem];;
