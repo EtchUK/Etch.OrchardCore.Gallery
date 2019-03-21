@@ -35,22 +35,20 @@ export const addVideoEmbed = (): GalleryModel => {
         const $cancelButtons = $modal.find('button[data-dismiss="modal"]');
         $cancelButtons.each((index: number) => {
             const $cancelButton = $($cancelButtons[index]);
-            $cancelButton.on('click', () => {
+            $cancelButton.off('click').on('click', () => {
                 $modal.hide();
-                removeEventListener($modal);
             });
         });
 
         // Trigger ok button
         const $okButton = $modal.find('button[data-accept="model"]').first();
-        $okButton.on('click', () => {
+        $okButton.off('click').on('click', () => {
             const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
 
             const galleryJsonModel = new GalleryJsonModel($jsonInput);
 
             getEmbedThumb($('#embedUrl').val() as string).then(
                 (url: string) => {
-                    console.log(url);
                     const galleryPartItem = new GalleryPartItem(
                         GalleryPartType.Video,
                         $('#embedUrl').val() as string,
@@ -62,20 +60,7 @@ export const addVideoEmbed = (): GalleryModel => {
             );
 
             $modal.hide();
-            removeEventListener($modal);
         });
-    };
-
-    const removeEventListener = ($modal: JQuery) => {
-        // Remove click events
-        const $cancelButtons = $modal.find('button[data-dismiss="modal"]');
-        $cancelButtons.each((index: number) => {
-            const $cancelButton = $($cancelButtons[index]);
-            $cancelButton.off('click');
-        });
-
-        const $okButton = $modal.find('button[data-accept="model"]').first();
-        $okButton.off('click');
     };
 
     const getEmbedThumb = async (url: string): Promise<string> => {

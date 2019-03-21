@@ -32,19 +32,18 @@ export const addFromMediaPicker = (): GalleryModel => {
         const $cancelButtons = $modal.find('button[data-dismiss="modal"]');
         $cancelButtons.each((index: number) => {
             const $cancelButton = $($cancelButtons[index]);
-            $cancelButton.on('click', () => {
+            $cancelButton.off('click').on('click', () => {
                 // we don't want the included medias to be still selected the next time we open the modal.
                 const mediaApp = (window as any).mediaApp;
                 mediaApp.selectedMedias = [];
 
                 $modal.hide();
-                removeEventListener($modal);
             });
         });
 
         // Trigger ok button
         const $okButton = $modal.find('button[data-accept="model"]').first();
-        $okButton.on('click', () => {
+        $okButton.off('click').on('click', () => {
             const mediaApp = (window as any).mediaApp;
             const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
             const galleryJsonModel = new GalleryJsonModel($jsonInput);
@@ -82,20 +81,7 @@ export const addFromMediaPicker = (): GalleryModel => {
             mediaApp.selectedMedias = [];
 
             $modal.hide();
-            removeEventListener($modal);
         });
-    };
-
-    const removeEventListener = ($modal: JQuery) => {
-        // Remove click events
-        const $cancelButtons = $modal.find('button[data-dismiss="modal"]');
-        $cancelButtons.each((index: number) => {
-            const $cancelButton = $($cancelButtons[index]);
-            $cancelButton.off('click');
-        });
-
-        const $okButton = $modal.find('button[data-accept="model"]').first();
-        $okButton.off('click');
     };
 
     return galleryModel;

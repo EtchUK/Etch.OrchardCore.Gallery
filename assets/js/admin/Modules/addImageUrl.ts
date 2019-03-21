@@ -37,15 +37,15 @@ export const addImageUrl = (): GalleryModel => {
         const $cancelButtons = $modal.find('button[data-dismiss="modal"]');
         $cancelButtons.each((index: number) => {
             const $cancelButton = $($cancelButtons[index]);
-            $cancelButton.on('click', () => {
+            $cancelButton.off('click').on('click', () => {
+                console.log('1');
                 $modal.hide();
-                removeEventListener($modal);
             });
         });
 
         // Trigger ok button
         const $okButton = $modal.find('button[data-accept="model"]').first();
-        $okButton.on('click', () => {
+        $okButton.off('click').on('click', () => {
             const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
 
             const galleryJsonModel = new GalleryJsonModel($jsonInput);
@@ -58,20 +58,7 @@ export const addImageUrl = (): GalleryModel => {
             galleryJsonModel.add(galleryPartItem);
 
             $modal.hide();
-            removeEventListener($modal);
         });
-    };
-
-    const removeEventListener = ($modal: JQuery) => {
-        // Remove click events
-        const $cancelButtons = $modal.find('button[data-dismiss="modal"]');
-        $cancelButtons.each((index: number) => {
-            const $cancelButton = $($cancelButtons[index]);
-            $cancelButton.off('click');
-        });
-
-        const $okButton = $modal.find('button[data-accept="model"]').first();
-        $okButton.off('click');
     };
 
     return galleryModel;
