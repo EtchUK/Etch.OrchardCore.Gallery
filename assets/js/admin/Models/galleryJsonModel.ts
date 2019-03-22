@@ -54,6 +54,17 @@ export class GalleryJsonModel {
         this.triggerChange();
     };
 
+    move: (fromIndex: number, toIndex: number) => void = (fromIndex: number, toIndex: number) => {
+        const jsonString = (this.jsonInput.val() as string) || '[]';
+        const galleryPartItems = JSON.parse(jsonString) as [GalleryPartItem];
+        
+        var element = galleryPartItems[fromIndex];
+        galleryPartItems.splice(fromIndex, 1);
+        galleryPartItems.splice(toIndex, 0, element);
+    
+        this.jsonInput.val(JSON.stringify(galleryPartItems));
+    };
+
     triggerChange: () => void = () => {
         // This is the only way we can trigger change
         const e = document.createEvent('HTMLEvents');

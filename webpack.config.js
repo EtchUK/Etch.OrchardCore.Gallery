@@ -41,6 +41,9 @@ module.exports = {
             'vue$': 'vue/dist/vue.esm.js'
         }
     },
+    externals: {
+        vue: "Vue"
+    },      
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, './wwwroot/Scripts'),

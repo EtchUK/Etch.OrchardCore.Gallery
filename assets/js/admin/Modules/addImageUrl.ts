@@ -38,7 +38,6 @@ export const addImageUrl = (): GalleryModel => {
         $cancelButtons.each((index: number) => {
             const $cancelButton = $($cancelButtons[index]);
             $cancelButton.off('click').on('click', () => {
-                console.log('1');
                 $modal.hide();
             });
         });
