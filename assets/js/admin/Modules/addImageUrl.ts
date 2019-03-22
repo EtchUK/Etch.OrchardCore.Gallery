@@ -8,7 +8,7 @@ export const addImageUrl = (): GalleryModel => {
 
     galleryModel.description =
         'This module allows users to add image to the gallery using URL';
-    galleryModel.actionLabel = 'Add image URL';
+    galleryModel.actionLabel = 'Add Image URL';
 
     const id = $('.gallery').attr('id');
 
