@@ -1,7 +1,10 @@
 ﻿import { GalleryModel } from '../Models/galleryModel';
 import { GalleryJsonModel } from '../Models/galleryJsonModel';
 import { GalleryPartItem } from '../Models/galleryPartItem';
-import { EnumGalleryPartType, GalleryPartType } from '../Models/galleryPartType';
+import {
+    EnumGalleryPartType,
+    GalleryPartType,
+} from '../Models/galleryPartType';
 
 export const addFromMediaPicker = (): GalleryModel => {
     const galleryModel = new GalleryModel();
@@ -23,6 +26,7 @@ export const addFromMediaPicker = (): GalleryModel => {
         $modal.find('.modal-title').html('Add Media');
 
         // Add content
+        $modal.find('.modal-body').html('');
         $('#mediaApp')
             .detach()
             .appendTo($modal.find('.modal-body'))
@@ -38,6 +42,11 @@ export const addFromMediaPicker = (): GalleryModel => {
                 mediaApp.selectedMedias = [];
 
                 $modal.hide();
+
+                $('#mediaApp')
+                    .detach()
+                    .appendTo('.ta-content')
+                    .hide();
             });
         });
 
@@ -82,6 +91,11 @@ export const addFromMediaPicker = (): GalleryModel => {
             mediaApp.selectedMedias = [];
 
             $modal.hide();
+
+            $('#mediaApp')
+                .detach()
+                .appendTo('.ta-content')
+                .hide();
         });
     };
 
