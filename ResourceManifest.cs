@@ -8,7 +8,7 @@ namespace Moov2.OrchardCore.Gallery {
 
             manifest
                 .DefineStyle("Gallery.Styles")
-                .SetUrl("/Moov2.OrchardCore.Gallery/css/styles.css");
+                .SetUrl("/Moov2.OrchardCore.Gallery/Styles/styles.css");
 
             manifest
                 .DefineScript("Gallery.Scripts")

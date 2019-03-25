@@ -7,7 +7,8 @@ module.exports = {
     entry: {
         'admin': './Assets/js/admin/index.ts',
         'gallery': './Assets/js/gallery/index.ts',
-        'styles': './Assets/css/styles.scss'
+        'styles': './Assets/css/gallery/styles.scss',
+        'styles.admin': './Assets/css/admin/admin.scss'
     },
     mode: 'development',
     module: {
@@ -51,7 +52,7 @@ module.exports = {
     plugins: [
         new FixStyleOnlyEntriesPlugin(),
         new MiniCssExtractPlugin({
-            filename: '../Styles/styles.css'
+            filename: '../Styles/[name].css'
         })
     ]
 };

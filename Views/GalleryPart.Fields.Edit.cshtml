@@ -7,6 +7,7 @@
 <script asp-src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.min.js" debug-src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.js" asp-name="sortable" at="Foot"></script>
 <script asp-src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.min.js" debug-src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.js" asp-name="vuedraggable" depends-on="vuejs, sortable" at="Foot"></script>
 <script asp-src="~/Moov2.OrchardCore.Gallery/Scripts/admin.js" asp-name="gallery" at="Foot"></script>
+<style asp-src="~/Moov2.OrchardCore.Gallery/Styles/styles.admin.css"></style>
 
 <script at="Foot">
     initializeMediaApplication(false, '@Url.Action("MediaApplication", "Admin", new { area = "OrchardCore.Media" })');
@@ -24,7 +25,7 @@
 
     <input type="hidden" asp-for="MediaItems" v-on:change="updateImages" class="form-control content-preview-text content-caption-text @Html.IdFor(m => m)-MediaItems" />
 
-    <draggable tag="ol" :list="images" id="image-list" class="row media-items-grid" @@end="onDragEnd">
+    <draggable tag="ol" :list="images" id="image-list" class="row media-items-grid" @@end="onDragEnd" v-cloak>
         <li v-for="(image, index) in images" class="media-container-main-list-item card" style="width: 162px;">
             <div class="thumb-container" style="height: 160px;">
                 <img :src=image.thumb style="max-height: 160px; max-width: 160px;">
