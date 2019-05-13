@@ -43,11 +43,17 @@ export const addVideoEmbed = (): GalleryModel => {
         // Trigger ok button
         const $okButton = $modal.find('button[data-accept="model"]').first();
         $okButton.off('click').on('click', () => {
-            const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
+            const videoUrl = $('#embedUrl').val() as string;
 
+            if(!getYoutubeId(videoUrl) && !getVimeoId(videoUrl)) {
+                alert('Please enter a valid Youtube/Vimeo URL');
+                return;
+            }
+
+            const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
             const galleryJsonModel = new GalleryJsonModel($jsonInput);
 
-            getEmbedThumb($('#embedUrl').val() as string).then(
+            getEmbedThumb(videoUrl).then(
                 (url: string) => {
                     const galleryPartItem = new GalleryPartItem(
                         EnumGalleryPartType.Video,
@@ -58,7 +64,9 @@ export const addVideoEmbed = (): GalleryModel => {
                     );
                     galleryJsonModel.add(galleryPartItem);
                 }
-            );
+            ).catch(error => {
+
+            });
 
             $modal.hide();
         });
