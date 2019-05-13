@@ -2,6 +2,7 @@
 import { GalleryJsonModel } from '../Models/galleryJsonModel';
 import { GalleryPartItem } from '../Models/galleryPartItem';
 import { EnumGalleryPartType, GalleryPartType } from '../Models/galleryPartType';
+import { imageExists } from '../Helpers/imageExists';
 
 export const addImageUrl = (): GalleryModel => {
     const galleryModel = new GalleryModel();
@@ -45,19 +46,31 @@ export const addImageUrl = (): GalleryModel => {
         // Trigger ok button
         const $okButton = $modal.find('button[data-accept="model"]').first();
         $okButton.off('click').on('click', () => {
-            const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
 
-            const galleryJsonModel = new GalleryJsonModel($jsonInput);
-            const galleryPartItem = new GalleryPartItem(
-                EnumGalleryPartType.Image,
-                GalleryPartType.getName(EnumGalleryPartType.Image),
-                $('#imageUrl').val() as string,
-                $('#imageTitle').val() as string,
-                $('#imageUrl').val() as string
-            );
-            galleryJsonModel.add(galleryPartItem);
+            var imageUrl = $('#imageUrl').val() as string;
+            imageExists(imageUrl).then((isValid: boolean) => {
+                
+                // Check if URL is not valid show error
+                if(!isValid) {
+                    alert('Please enter a valid image URL');
+                    return;
+                }
 
-            $modal.hide();
+                const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
+
+                const galleryJsonModel = new GalleryJsonModel($jsonInput);
+                const galleryPartItem = new GalleryPartItem(
+                    EnumGalleryPartType.Image,
+                    GalleryPartType.getName(EnumGalleryPartType.Image),
+                    imageUrl,
+                    $('#imageTitle').val() as string,
+                    imageUrl
+                );
+                galleryJsonModel.add(galleryPartItem);
+    
+                $modal.hide();
+            })
+
         });
     };
 

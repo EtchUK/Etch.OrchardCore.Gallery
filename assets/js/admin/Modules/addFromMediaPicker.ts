@@ -26,6 +26,7 @@ export const addFromMediaPicker = (): GalleryModel => {
         $modal.find('.modal-title').html('Add Media');
 
         // Add content
+        $modal.find('.modal-dialog').addClass('media-modal');
         $modal.find('.modal-body').html('');
         $('#mediaApp')
             .detach()
@@ -41,6 +42,7 @@ export const addFromMediaPicker = (): GalleryModel => {
                 const mediaApp = (window as any).mediaApp;
                 mediaApp.selectedMedias = [];
 
+                $modal.find('.modal-dialog').removeClass('media-modal');
                 $modal.hide();
 
                 $('#mediaApp')
@@ -90,6 +92,7 @@ export const addFromMediaPicker = (): GalleryModel => {
             // we don't want the included medias to be still selected the next time we open the modal.
             mediaApp.selectedMedias = [];
 
+            $modal.find('.modal-dialog').removeClass('media-modal');
             $modal.hide();
 
             $('#mediaApp')
