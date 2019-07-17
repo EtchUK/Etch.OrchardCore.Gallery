@@ -32,6 +32,7 @@
     },
     "scripts": {
         "build": "webpack",
-        "dev": "webpack --watch"
+        "develop": "webpack --watch",
+        "start": "npm install && npm run develop"
     }
 }

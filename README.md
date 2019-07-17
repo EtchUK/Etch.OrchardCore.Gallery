@@ -17,4 +17,4 @@ Once the module is in a usable state we'll make it available via NuGet.
 ## Compiling Assets
 
 To compile both css and javascript for front end and back end run `npm run build`.  
-To compile and watch during devlopment run `npm run dev`.
+To compile and watch during devlopment run `npm run develop`.
