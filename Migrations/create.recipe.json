@@ -1,0 +1,56 @@
+﻿{
+    "name": "Etch.OrchardCore.Gallery",
+    "displayName": "Gallery",
+    "description": "Creates gallery widget.",
+    "author": "Etch",
+    "website": "https://etchuk.com",
+    "version": "0.1.0",
+    "issetuprecipe": false,
+    "categories": ["Content"],
+    "tags": ["etch"],
+    "steps": [
+      {
+        "name": "ContentDefinition",
+        "ContentTypes": [
+          {
+            "Name": "Gallery",
+            "DisplayName": "Gallery",
+            "Settings": {
+              "Creatable": "False",
+              "Draftable": "False",
+              "Versionable": "False",
+              "Listable": "False",
+              "Securable": "False",
+              "Stereotype": "Widget"
+            },
+            "ContentTypePartDefinitionRecords": [
+              {
+                "PartName": "Gallery",
+                "Name": "Gallery",
+                "Settings": {
+                  "Position": "1"
+                }
+              },
+              {
+                "PartName": "TitlePart",
+                "Name": "TitlePart",
+                "Settings": {
+                  "Position": "0"
+                }
+              },
+              {
+                "PartName": "GalleryPart",
+                "Name": "Media",
+                "Settings": {
+                  "DisplayName": "Media",
+                  "Description": "Collection of media items displayed in gallery.",
+                  "Position": "2"
+                }
+              }
+            ]
+          }
+        ],
+        "ContentParts": []
+      }
+    ]
+  }
