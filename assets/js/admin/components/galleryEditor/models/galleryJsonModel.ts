@@ -1,4 +1,4 @@
-import { GalleryPartItem } from '../Models/galleryPartItem';
+import { GalleryPartItem } from '../models/galleryPartItem';
 
 export class GalleryJsonModel {
     private jsonInput: JQuery<HTMLElement>;
@@ -7,7 +7,9 @@ export class GalleryJsonModel {
         this.jsonInput = jsonInput;
     }
 
-    add: (galleryPartItem: GalleryPartItem) => void = (galleryPartItem: GalleryPartItem) => {
+    add: (galleryPartItem: GalleryPartItem) => void = (
+        galleryPartItem: GalleryPartItem
+    ) => {
         if (galleryPartItem.url == '') {
             return;
         }
@@ -21,9 +23,10 @@ export class GalleryJsonModel {
         this.triggerChange();
     };
 
-    addAll: (galleryPartItems: GalleryPartItem[]) => void = (galleryPartItems: GalleryPartItem[]) => {
-
-        if(galleryPartItems.length === 0) {
+    addAll: (galleryPartItems: GalleryPartItem[]) => void = (
+        galleryPartItems: GalleryPartItem[]
+    ) => {
+        if (galleryPartItems.length === 0) {
             return;
         }
 
@@ -31,7 +34,7 @@ export class GalleryJsonModel {
         const jsonParsed = JSON.parse(jsonString) as [GalleryPartItem];
 
         galleryPartItems.forEach(galleryPartItem => {
-            jsonParsed.push(galleryPartItem);            
+            jsonParsed.push(galleryPartItem);
         });
 
         this.jsonInput.val(JSON.stringify(jsonParsed));
@@ -41,7 +44,7 @@ export class GalleryJsonModel {
 
     get: () => [GalleryPartItem] = () => {
         const jsonString = (this.jsonInput.val() as string) || '[]';
-        return JSON.parse(jsonString) as [GalleryPartItem];;
+        return JSON.parse(jsonString) as [GalleryPartItem];
     };
 
     delete: (index: number) => void = (index: number) => {
@@ -54,14 +57,17 @@ export class GalleryJsonModel {
         this.triggerChange();
     };
 
-    move: (fromIndex: number, toIndex: number) => void = (fromIndex: number, toIndex: number) => {
+    move: (fromIndex: number, toIndex: number) => void = (
+        fromIndex: number,
+        toIndex: number
+    ) => {
         const jsonString = (this.jsonInput.val() as string) || '[]';
         const galleryPartItems = JSON.parse(jsonString) as [GalleryPartItem];
-        
+
         var element = galleryPartItems[fromIndex];
         galleryPartItems.splice(fromIndex, 1);
         galleryPartItems.splice(toIndex, 0, element);
-    
+
         this.jsonInput.val(JSON.stringify(galleryPartItems));
     };
 
@@ -70,5 +76,5 @@ export class GalleryJsonModel {
         const e = document.createEvent('HTMLEvents');
         e.initEvent('change', true, true);
         this.jsonInput[0].dispatchEvent(e);
-    }
+    };
 }

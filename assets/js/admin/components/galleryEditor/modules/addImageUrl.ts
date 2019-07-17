@@ -1,8 +1,11 @@
-﻿import { GalleryModel } from '../Models/galleryModel';
-import { GalleryJsonModel } from '../Models/galleryJsonModel';
-import { GalleryPartItem } from '../Models/galleryPartItem';
-import { EnumGalleryPartType, GalleryPartType } from '../Models/galleryPartType';
-import { imageExists } from '../Helpers/imageExists';
+﻿import { GalleryModel } from '../models/galleryModel';
+import { GalleryJsonModel } from '../models/galleryJsonModel';
+import { GalleryPartItem } from '../models/galleryPartItem';
+import {
+    EnumGalleryPartType,
+    GalleryPartType,
+} from '../models/galleryPartType';
+import { imageExists } from '../helpers/imageExists';
 
 export const addImageUrl = (): GalleryModel => {
     const galleryModel = new GalleryModel();
@@ -46,17 +49,17 @@ export const addImageUrl = (): GalleryModel => {
         // Trigger ok button
         const $okButton = $modal.find('button[data-accept="model"]').first();
         $okButton.off('click').on('click', () => {
-
             var imageUrl = $('#imageUrl').val() as string;
             imageExists(imageUrl).then((isValid: boolean) => {
-                
                 // Check if URL is not valid show error
-                if(!isValid) {
+                if (!isValid) {
                     alert('Please enter a valid image URL');
                     return;
                 }
 
-                const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
+                const $jsonInput = $(
+                    '.gallery > .' + id + '-MediaItems'
+                ).first();
 
                 const galleryJsonModel = new GalleryJsonModel($jsonInput);
                 const galleryPartItem = new GalleryPartItem(
@@ -67,10 +70,9 @@ export const addImageUrl = (): GalleryModel => {
                     imageUrl
                 );
                 galleryJsonModel.add(galleryPartItem);
-    
-                $modal.hide();
-            })
 
+                $modal.hide();
+            });
         });
     };
 

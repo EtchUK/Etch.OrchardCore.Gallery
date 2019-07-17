@@ -1,10 +1,10 @@
-﻿import { GalleryModel } from '../Models/galleryModel';
-import { GalleryJsonModel } from '../Models/galleryJsonModel';
-import { GalleryPartItem } from '../Models/galleryPartItem';
+﻿import { GalleryModel } from '../models/galleryModel';
+import { GalleryJsonModel } from '../models/galleryJsonModel';
+import { GalleryPartItem } from '../models/galleryPartItem';
 import {
     EnumGalleryPartType,
     GalleryPartType,
-} from '../Models/galleryPartType';
+} from '../models/galleryPartType';
 
 export const addFromMediaPicker = (): GalleryModel => {
     const galleryModel = new GalleryModel();

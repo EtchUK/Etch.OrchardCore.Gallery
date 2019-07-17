@@ -1,7 +1,10 @@
-﻿import { GalleryModel } from '../Models/galleryModel';
-import { GalleryJsonModel } from '../Models/galleryJsonModel';
-import { GalleryPartItem } from '../Models/galleryPartItem';
-import { EnumGalleryPartType, GalleryPartType } from '../Models/galleryPartType';
+﻿import { GalleryModel } from '../models/galleryModel';
+import { GalleryJsonModel } from '../models/galleryJsonModel';
+import { GalleryPartItem } from '../models/galleryPartItem';
+import {
+    EnumGalleryPartType,
+    GalleryPartType,
+} from '../models/galleryPartType';
 
 export const addVideoEmbed = (): GalleryModel => {
     const galleryModel = new GalleryModel();
@@ -45,7 +48,7 @@ export const addVideoEmbed = (): GalleryModel => {
         $okButton.off('click').on('click', () => {
             const videoUrl = $('#embedUrl').val() as string;
 
-            if(!getYoutubeId(videoUrl) && !getVimeoId(videoUrl)) {
+            if (!getYoutubeId(videoUrl) && !getVimeoId(videoUrl)) {
                 alert('Please enter a valid Youtube/Vimeo URL');
                 return;
             }
@@ -53,8 +56,8 @@ export const addVideoEmbed = (): GalleryModel => {
             const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
             const galleryJsonModel = new GalleryJsonModel($jsonInput);
 
-            getEmbedThumb(videoUrl).then(
-                (url: string) => {
+            getEmbedThumb(videoUrl)
+                .then((url: string) => {
                     const galleryPartItem = new GalleryPartItem(
                         EnumGalleryPartType.Video,
                         GalleryPartType.getName(EnumGalleryPartType.Video),
@@ -63,10 +66,8 @@ export const addVideoEmbed = (): GalleryModel => {
                         url
                     );
                     galleryJsonModel.add(galleryPartItem);
-                }
-            ).catch(error => {
-
-            });
+                })
+                .catch(error => {});
 
             $modal.hide();
         });
@@ -94,6 +95,7 @@ export const addVideoEmbed = (): GalleryModel => {
     const getYoutubeId = (url: string): string | null => {
         const youtube_regex = /^.*(youtu\.be\/|vi?\/|u\/\w\/|embed\/|\?vi?=|\&vi?=)([^#\&\?]*).*/;
         const parsed = url.match(youtube_regex);
+
         if (parsed && parsed[2]) {
             return parsed[2];
         }
@@ -104,6 +106,7 @@ export const addVideoEmbed = (): GalleryModel => {
     const getVimeoId = (url: string): string | null => {
         const vimeo_regex = /^.*(vimeo\.com\/)((channels\/[A-z]+\/)|(groups\/[A-z]+\/videos\/))?([0-9]+)/;
         const parsed = url.match(vimeo_regex);
+
         if (parsed && parsed[5]) {
             return parsed[5];
         }

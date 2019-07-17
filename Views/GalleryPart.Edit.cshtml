@@ -11,6 +11,7 @@
 
 <script at="Foot">
     initializeMediaApplication(false, '@Url.Action("MediaApplication", "Admin", new { area = "OrchardCore.Media" })');
+    initializeGalleryEditor(document.getElementById('@Html.IdFor(m => m)'));
 </script>
 
 <fieldset class="form-group gallery" id="@Html.IdFor(m => m)">
