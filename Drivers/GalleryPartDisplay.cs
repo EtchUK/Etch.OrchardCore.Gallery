@@ -33,7 +33,7 @@ namespace Etch.OrchardCore.Gallery.Drivers
 
             var partJson = JsonConvert.DeserializeObject<List<GalleryPartItem>>(part.MediaItems).Cast<GalleryPartItem>().ToList();
 
-            return Initialize<GalleryPartDisplayViewModel>("GalleryPart_Display", model => {
+            return Initialize<GalleryPartDisplayViewModel>("GalleryPart", model => {
                 model.MediaItems = partJson;
             }).Location("Footer");
         }
@@ -41,7 +41,7 @@ namespace Etch.OrchardCore.Gallery.Drivers
 
         public override IDisplayResult Edit(GalleryPart part, BuildPartEditorContext context)
         {
-            return Initialize<GalleryPartEditViewModel>("GalleryPart_Fields_Edit", m =>
+            return Initialize<GalleryPartEditViewModel>("GalleryPart_Edit", m =>
             {
                 m.MediaItems = part.MediaItems;
             });
