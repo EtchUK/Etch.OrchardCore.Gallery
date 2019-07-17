@@ -1,4 +1,4 @@
-﻿@using Moov2.OrchardCore.Gallery.ViewModels;
+﻿@using Etch.OrchardCore.Gallery.ViewModels;
 @model GalleryPartEditViewModel
 
 <script asp-src="~/OrchardCore.Media/Scripts/media.js" asp-name="media" at="Foot" depends-on="admin, vuejs, sortable, vuedraggable"></script>
@@ -6,8 +6,8 @@
 <script asp-src="https://vuejs.org/js/vue.min.js" debug-src="https://vuejs.org/js/vue.js" asp-name="vuejs" at="Foot"></script>
 <script asp-src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.min.js" debug-src="https://cdn.jsdelivr.net/sortable/1.4.2/Sortable.js" asp-name="sortable" at="Foot"></script>
 <script asp-src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.min.js" debug-src="https://cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.14.1/vuedraggable.js" asp-name="vuedraggable" depends-on="vuejs, sortable" at="Foot"></script>
-<script asp-src="~/Moov2.OrchardCore.Gallery/Scripts/admin.js" asp-name="gallery" at="Foot"></script>
-<style asp-src="~/Moov2.OrchardCore.Gallery/Styles/styles.admin.css"></style>
+<script asp-src="~/Etch.OrchardCore.Gallery/Scripts/admin.js" asp-name="gallery" at="Foot"></script>
+<style asp-src="~/Etch.OrchardCore.Gallery/Styles/styles.admin.css"></style>
 
 <script at="Foot">
     initializeMediaApplication(false, '@Url.Action("MediaApplication", "Admin", new { area = "OrchardCore.Media" })');

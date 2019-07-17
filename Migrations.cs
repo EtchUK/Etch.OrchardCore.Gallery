@@ -2,7 +2,7 @@
 using OrchardCore.ContentManagement.Metadata.Settings;
 using OrchardCore.Data.Migration;
 
-namespace Moov2.OrchardCore.Gallery
+namespace Etch.OrchardCore.Gallery
 {
     public class Migrations : DataMigration
     {

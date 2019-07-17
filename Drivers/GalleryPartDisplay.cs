@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Localization;
-using Moov2.OrchardCore.Gallery.Models;
-using Moov2.OrchardCore.Gallery.ViewModels;
+using Etch.OrchardCore.Gallery.Models;
+using Etch.OrchardCore.Gallery.ViewModels;
 using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Moov2.OrchardCore.Gallery.Drivers
+namespace Etch.OrchardCore.Gallery.Drivers
 {
     public class GalleryPartDisplay : ContentPartDisplayDriver<GalleryPart>
     {

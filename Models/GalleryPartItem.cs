@@ -1,4 +1,4 @@
-﻿namespace Moov2.OrchardCore.Gallery.Models {
+﻿namespace Etch.OrchardCore.Gallery.Models {
 
     public class GalleryPartItem {
         public int Type { get; set; }

@@ -1,4 +1,4 @@
-﻿namespace Moov2.OrchardCore.Gallery.ViewModels
+﻿namespace Etch.OrchardCore.Gallery.ViewModels
 {
     public class GalleryPartEditViewModel
     {

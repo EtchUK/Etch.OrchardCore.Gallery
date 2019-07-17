@@ -1,6 +1,6 @@
 ﻿using OrchardCore.ResourceManagement;
 
-namespace Moov2.OrchardCore.Gallery {
+namespace Etch.OrchardCore.Gallery {
 
     public class ResourceManifest : IResourceManifestProvider {
         public void BuildManifests(IResourceManifestBuilder builder) {
@@ -8,11 +8,11 @@ namespace Moov2.OrchardCore.Gallery {
 
             manifest
                 .DefineStyle("Gallery.Styles")
-                .SetUrl("/Moov2.OrchardCore.Gallery/Styles/styles.css");
+                .SetUrl("/Etch.OrchardCore.Gallery/Styles/styles.css");
 
             manifest
                 .DefineScript("Gallery.Scripts")
-                .SetUrl("/Moov2.OrchardCore.Gallery/Scripts/gallery.js");
+                .SetUrl("/Etch.OrchardCore.Gallery/Scripts/gallery.js");
         }
     }
 }

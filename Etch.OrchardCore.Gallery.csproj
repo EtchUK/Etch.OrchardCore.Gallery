@@ -4,13 +4,13 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.0.1-beta</Version>
-    <PackageId>Moov2.OrchardCore.Gallery</PackageId>
-    <Title>Moov2 OrchardCore Gallery</Title>
-    <Authors>Moov2</Authors>
-    <Description>Module for Orchard Core for displaying a collection of images and videos.</Description>
-    <PackageTags>orchardcore;moov2</PackageTags>
-    <RepositoryUrl>https://github.com/moov2/Moov2.OrchardCore.Gallery</RepositoryUrl>
-    <PackageProjectUrl>https://github.com/moov2/Moov2.OrchardCore.Gallery</PackageProjectUrl>
+    <PackageId>Etch.OrchardCore.Gallery</PackageId>
+    <Title>Etch Orchard Core Gallery</Title>
+    <Authors>Etch</Authors>
+    <Description>Orchard Core module for displaying a collection of images and videos.</Description>
+    <PackageTags>orchardcore;etch</PackageTags>
+    <RepositoryUrl>https://github.com/etchuk/Etch.OrchardCore.Gallery</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/etchuk/Etch.OrchardCore.Gallery</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

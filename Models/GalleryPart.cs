@@ -1,6 +1,6 @@
 ﻿using OrchardCore.ContentManagement;
 
-namespace Moov2.OrchardCore.Gallery.Models
+namespace Etch.OrchardCore.Gallery.Models
 {
     public class GalleryPart : ContentPart
     {
