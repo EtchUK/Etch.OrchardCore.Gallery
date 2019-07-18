@@ -1,53 +1,60 @@
-import { addImageUrl } from './modules/addImageUrl';
-import { addVideoEmbed } from './modules/addVideoEmbed';
-import { addFromMediaPicker } from './modules/addFromMediaPicker';
-import { GalleryModel } from './models/galleryModel';
-import { GalleryJsonModel } from './models/galleryJsonModel';
-import { GalleryPartItem } from './models/galleryPartItem';
+import { addFromMediaPicker, addImageUrl, addVideoEmbed } from './sources';
+import { GalleryCollection, IGalleryItem, IGallerySource } from './models';
+
 import draggable = require('vuedraggable');
 import Vue from 'vue';
 
-export default (el: HTMLElement): void => {
-    const models = [addFromMediaPicker(), addImageUrl(), addVideoEmbed()];
+declare global {
+    interface Window {
+        mediaApp: any;
+    }
+}
 
-    const id = $('.gallery').attr('id');
+export default (el: HTMLElement): void => {
+    const id = $('.gallery').attr('id') || '';
+    const sources = [
+        addFromMediaPicker(id),
+        addImageUrl(id),
+        addVideoEmbed(id),
+    ];
 
     // Get images
-    const getImages = (): [GalleryPartItem] => {
-        const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
-        const galleryJsonModel = new GalleryJsonModel($jsonInput).get();
-
-        return galleryJsonModel;
-    }
+    const getImages = (): IGalleryItem[] => {
+        return new GalleryCollection(
+            $('.gallery > .' + id + '-MediaItems').first()
+        ).get();
+    };
 
     // Init vue
     new Vue({
         el,
 
         components: {
-            draggable
+            draggable,
         },
 
         data: {
-            items: models,
+            items: sources,
             images: getImages(),
         },
- 
+
         methods: {
-            action: (galleryModel: GalleryModel) => {
-                galleryModel.action();
+            action: (gallerySource: IGallerySource) => {
+                gallerySource.action();
+            },
+            deleteImage(index: number) {
+                new GalleryCollection(
+                    $('.gallery > .' + id + '-MediaItems').first()
+                ).delete(index);
+            },
+            onDragEnd(event: any) {
+                new GalleryCollection(
+                    $('.gallery > .' + id + '-MediaItems').first()
+                ).move(event.oldIndex, event.newIndex);
             },
             updateImages() {
                 this.images = getImages();
             },
-            deleteImage(index: number) {
-                const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
-                new GalleryJsonModel($jsonInput).delete(index);
-            },
-            onDragEnd(event: any) {
-                const $jsonInput = $('.gallery > .' + id + '-MediaItems').first();
-                new GalleryJsonModel($jsonInput).move(event.oldIndex, event.newIndex);
-            }
-        }
+        },
     });
 };

@@ -1,14 +1,14 @@
-﻿export enum EnumGalleryPartType {
+﻿export enum EnumGalleryItemType {
     Image = 1,
     Video = 2,
 }
 
-export class GalleryPartType {
+export class GalleryItemType {
     static getName: (index: number) => string = (index: number) => {
         switch (index) {
-            case EnumGalleryPartType.Image:
+            case EnumGalleryItemType.Image:
                 return 'Image';
-            case EnumGalleryPartType.Video:
+            case EnumGalleryItemType.Video:
                 return 'Video';
             default:
                 return '';

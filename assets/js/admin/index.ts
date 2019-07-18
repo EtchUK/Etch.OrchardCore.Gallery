@@ -1,4 +1,7 @@
-﻿import galleryEditor from './components/galleryEditor';
+﻿//import 'bootstrap';
+import 'jquery';
+
+import galleryEditor from './components/galleryEditor';
 
 declare global {
     interface Window {
