@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Etch.OrchardCore.Gallery.Drivers;
+﻿using Etch.OrchardCore.Gallery.Drivers;
 using Etch.OrchardCore.Gallery.Models;
+using Etch.OrchardCore.Gallery.ViewModels;
+using Fluid;
+using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.Data.Migration;
@@ -13,7 +15,8 @@ namespace Etch.OrchardCore.Gallery
     {
         static Startup()
         {
-
+            TemplateContext.GlobalMemberAccessStrategy.Register<GalleryPartDisplayViewModel>();
+            TemplateContext.GlobalMemberAccessStrategy.Register<GalleryPartItem>();
         }
 
         public override void ConfigureServices(IServiceCollection services)
