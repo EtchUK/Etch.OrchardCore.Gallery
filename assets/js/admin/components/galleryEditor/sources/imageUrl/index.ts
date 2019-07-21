@@ -8,15 +8,11 @@ import { imageExists } from './helpers/imageExists';
 import { show } from '../helpers/modal';
 
 const urlFieldId: string = 'imageUrl';
-const titleFieldId: string = 'imageTitle';
 
 const body: string = `<fieldset class="form-group">
-    <label for="${titleFieldId}">Title</label>
-    <input type="text" id="${titleFieldId}" name="${titleFieldId}" class="form-control content-preview-text content-caption-text">
-</fieldset>
-<fieldset class="form-group">
     <label for="${urlFieldId}">URL</label>
-    <input type="text" id="${urlFieldId}" name="${urlFieldId}" class="form-control content-preview-text content-caption-text">
+    <input type="text" id="${urlFieldId}" name="${urlFieldId}" class="form-control">
+    <p class="hint">URL to image hosted on the web (e.g. https://via.placeholder.com/150).
 </fieldset>`;
 
 const description: string = 'Add image to gallery by specify URL';
@@ -34,7 +30,6 @@ export default (id: string): IGallerySource => {
                 label,
                 onComplete: (): Promise<boolean> => {
                     const url = $(`#${urlFieldId}`).val() as string;
-                    const title = $(`#${titleFieldId}`).val() as string;
 
                     return new Promise(resolve => {
                         imageExists(url).then((isValid: boolean) => {
@@ -52,7 +47,7 @@ export default (id: string): IGallerySource => {
                                         EnumGalleryItemType.Image
                                     ),
                                     thumb: url,
-                                    title,
+                                    title: url,
                                     url,
                                 },
                             ]);

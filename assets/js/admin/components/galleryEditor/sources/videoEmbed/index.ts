@@ -9,8 +9,9 @@ import { getYoutubeId, getVimeoId, getEmbedThumb } from './helpers/vendor';
 
 const embedUrlFieldId: string = 'embedUrl';
 const body: string = `<fieldset class="form-group">
-    <label for="embedUrl">URL</label>
+    <label for="${embedUrlFieldId}">URL</label>
     <input type="text" id="${embedUrlFieldId}" name="${embedUrlFieldId}" class="form-control">
+    <p class="hint">URL to video on <a href="https://vimeo.com">Vimeo</a> or <a href="https://youtube.com">YouTube</a> (e.g. https://www.youtube.com/watch?v=TorVk3Hxm7Q).</p>
 </fieldset>`;
 
 const description: string =
