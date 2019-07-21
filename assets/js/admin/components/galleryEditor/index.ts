@@ -57,6 +57,18 @@ export default (el: HTMLElement, initialData: IGalleryItem[]): void => {
             remove: function(index: number): void {
                 this.items.splice(index, 1);
             },
+
+            updatePreview: function() {
+                this.$nextTick(() => {
+                    $(document).trigger('contentpreview:render');
+                });
+            },
+        },
+
+        watch: {
+            items: function() {
+                this.updatePreview();
+            },
         },
     });
 };
