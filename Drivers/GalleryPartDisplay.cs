@@ -31,11 +31,11 @@ namespace Etch.OrchardCore.Gallery.Drivers
 
         public override IDisplayResult Display(GalleryPart part) {
 
-            var partJson = JsonConvert.DeserializeObject<List<GalleryPartItem>>(part.MediaItems).Cast<GalleryPartItem>().ToList();
+            var mediaItems = JsonConvert.DeserializeObject<List<GalleryPartItem>>(part.MediaItems).Cast<GalleryPartItem>().ToList();
 
             return Initialize<GalleryPartDisplayViewModel>("GalleryPart", model => {
-                model.MediaItems = partJson;
-            }).Location("Footer");
+                model.MediaItems = mediaItems;
+            }).Location("Content:10");
         }
 
 
