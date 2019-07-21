@@ -10,20 +10,22 @@
     ResourceManager.RegisterResource("script", "Gallery.Scripts").AtFoot();
 }
 
-<ul class="js-gallery">
-    @foreach (var media in Model.MediaItems) {
-        <li>
-            @switch (media.Type) {
+<ul class="list list--gallery js-gallery">
+    @foreach (var media in Model.MediaItems)
+    {
+        <li class="list__item">
+            @switch (media.Type)
+            {
                 case (int)GalleryPartType.Image:
-                <a href="@media.Url">
-                    <img src="@media.Thumb" title="@media.Title" alt="@media.Title" />
-                </a>
-                break;
+                    <a href="@media.Url">
+                        <img src="@media.Thumb" title="@media.Title" alt="@media.Title" />
+                    </a>
+                    break;
                 case (int)GalleryPartType.Video:
-                <a href="@media.Url">
-                    <img src="@media.Thumb" title="@media.Title" alt="@media.Title" />
-                </a>
-                break;
+                    <a href="@media.Url">
+                        <img src="@media.Thumb" title="@media.Title" alt="@media.Title" />
+                    </a>
+                    break;
             }
         </li>
     }
