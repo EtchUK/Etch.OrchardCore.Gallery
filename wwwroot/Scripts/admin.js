@@ -94,18 +94,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nconst sources_1 = __webpack_require__(/*! ./sources */ \"./Assets/js/admin/components/galleryEditor/sources/index.ts\");\r\nconst draggable = __webpack_require__(/*! vuedraggable */ \"./node_modules/vuedraggable/dist/vuedraggable.umd.min.js\");\r\nconst vue_1 = __importDefault(__webpack_require__(/*! vue */ \"vue\"));\r\nexports.default = (el, initialData) => {\r\n    const sources = [\r\n        sources_1.addFromMediaPicker(el.id),\r\n        sources_1.addImageUrl(el.id),\r\n        sources_1.addVideoEmbed(el.id),\r\n    ];\r\n    new vue_1.default({\r\n        el,\r\n        data: {\r\n            items: [],\r\n            sources,\r\n        },\r\n        components: {\r\n            draggable,\r\n        },\r\n        computed: {\r\n            value() {\r\n                return JSON.stringify(this.items);\r\n            },\r\n        },\r\n        mounted: function () {\r\n            this.items = initialData;\r\n        },\r\n        methods: {\r\n            action: function (source) {\r\n                const self = this;\r\n                source.action((items) => {\r\n                    self.items.push(...items);\r\n                });\r\n            },\r\n            remove: function (index) {\r\n                this.items.splice(index, 1);\r\n            },\r\n        },\r\n    });\r\n};\r\n\n\n//# sourceURL=webpack:///./Assets/js/admin/components/galleryEditor/index.ts?");
-
-/***/ }),
-
-/***/ "./Assets/js/admin/components/galleryEditor/models/galleryCollection.ts":
-/*!******************************************************************************!*\
-  !*** ./Assets/js/admin/components/galleryEditor/models/galleryCollection.ts ***!
-  \******************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("throw new Error(\"Module build failed (from ./node_modules/ts-loader/index.js):\\nError: ENOENT: no such file or directory, open 'D:\\\\development\\\\nuget-packages\\\\Etch.OrchardCore.Gallery\\\\Assets\\\\js\\\\admin\\\\components\\\\galleryEditor\\\\models\\\\galleryCollection.ts'\");\n\n//# sourceURL=webpack:///./Assets/js/admin/components/galleryEditor/models/galleryCollection.ts?");
+eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nconst sources_1 = __webpack_require__(/*! ./sources */ \"./Assets/js/admin/components/galleryEditor/sources/index.ts\");\r\nconst draggable = __webpack_require__(/*! vuedraggable */ \"./node_modules/vuedraggable/dist/vuedraggable.umd.min.js\");\r\nconst vue_1 = __importDefault(__webpack_require__(/*! vue */ \"vue\"));\r\nexports.default = (el, initialData) => {\r\n    const sources = [\r\n        sources_1.addFromMediaPicker(el.id),\r\n        sources_1.addImageUrl(el.id),\r\n        sources_1.addVideoEmbed(el.id),\r\n    ];\r\n    new vue_1.default({\r\n        el,\r\n        data: {\r\n            items: [],\r\n            sources,\r\n        },\r\n        components: {\r\n            draggable,\r\n        },\r\n        computed: {\r\n            hasItems() {\r\n                return this.items.length > 0;\r\n            },\r\n            value() {\r\n                return JSON.stringify(this.items);\r\n            },\r\n        },\r\n        mounted: function () {\r\n            this.items = initialData;\r\n        },\r\n        methods: {\r\n            action: function (source) {\r\n                const self = this;\r\n                source.action((items) => {\r\n                    self.items.push(...items);\r\n                });\r\n            },\r\n            remove: function (index) {\r\n                this.items.splice(index, 1);\r\n            },\r\n        },\r\n    });\r\n};\r\n\n\n//# sourceURL=webpack:///./Assets/js/admin/components/galleryEditor/index.ts?");
 
 /***/ }),
 
@@ -129,7 +118,7 @@ eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nva
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod) {\r\n    return (mod && mod.__esModule) ? mod : { \"default\": mod };\r\n};\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nconst galleryItemType_1 = __webpack_require__(/*! ./galleryItemType */ \"./Assets/js/admin/components/galleryEditor/models/galleryItemType.ts\");\r\nexports.EnumGalleryItemType = galleryItemType_1.EnumGalleryItemType;\r\nexports.GalleryItemType = galleryItemType_1.GalleryItemType;\r\nconst galleryCollection_1 = __importDefault(__webpack_require__(/*! ./galleryCollection */ \"./Assets/js/admin/components/galleryEditor/models/galleryCollection.ts\"));\r\nexports.GalleryCollection = galleryCollection_1.default;\r\n\n\n//# sourceURL=webpack:///./Assets/js/admin/components/galleryEditor/models/index.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", { value: true });\r\nconst galleryItemType_1 = __webpack_require__(/*! ./galleryItemType */ \"./Assets/js/admin/components/galleryEditor/models/galleryItemType.ts\");\r\nexports.EnumGalleryItemType = galleryItemType_1.EnumGalleryItemType;\r\nexports.GalleryItemType = galleryItemType_1.GalleryItemType;\r\n\n\n//# sourceURL=webpack:///./Assets/js/admin/components/galleryEditor/models/index.ts?");
 
 /***/ }),
 

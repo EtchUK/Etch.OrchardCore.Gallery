@@ -30,6 +30,10 @@ export default (el: HTMLElement, initialData: IGalleryItem[]): void => {
         },
 
         computed: {
+            hasItems(): boolean {
+                return this.items.length > 0;
+            },
+
             value(): string {
                 return JSON.stringify(this.items);
             },
