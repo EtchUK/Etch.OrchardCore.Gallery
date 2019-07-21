@@ -12,5 +12,9 @@ declare global {
 window.galleryApp = window.galleryApp || {};
 
 (window as any).initializeGalleryEditor = (el: HTMLElement): void => {
-    galleryEditor(el);
+    if (!el) {
+        return;
+    }
+
+    galleryEditor(el, $(`#${$(el).data('for')}`).data('init'));
 };

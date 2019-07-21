@@ -1,8 +1,8 @@
 import {
     EnumGalleryItemType,
-    GalleryCollection,
     GalleryItemType,
     IGallerySource,
+    IGalleryItem,
 } from '../../models';
 import { show } from '../helpers/modal';
 import { getYoutubeId, getVimeoId, getEmbedThumb } from './helpers/vendor';
@@ -24,7 +24,7 @@ export default (id: string): IGallerySource => {
     return {
         description,
         label,
-        action: () => {
+        action: (onAdd: (items: IGalleryItem[]) => void) => {
             show($(`.gallery > .${id}-ModalBody`), {
                 body,
                 label,
@@ -38,21 +38,19 @@ export default (id: string): IGallerySource => {
                             return;
                         }
 
-                        const galleryCollection = new GalleryCollection(
-                            $('.gallery > .' + id + '-MediaItems').first()
-                        );
-
                         getEmbedThumb(url)
                             .then((thumb: string) => {
-                                galleryCollection.add({
-                                    type: EnumGalleryItemType.Video,
-                                    typeName: GalleryItemType.getName(
-                                        EnumGalleryItemType.Video
-                                    ),
-                                    thumb,
-                                    title: '',
-                                    url,
-                                });
+                                onAdd([
+                                    {
+                                        type: EnumGalleryItemType.Video,
+                                        typeName: GalleryItemType.getName(
+                                            EnumGalleryItemType.Video
+                                        ),
+                                        thumb,
+                                        title: '',
+                                        url,
+                                    },
+                                ]);
 
                                 resolve(true);
                             })

@@ -1,6 +1,5 @@
 import {
     EnumGalleryItemType,
-    GalleryCollection,
     GalleryItemType,
     IGalleryItem,
     IGallerySource,
@@ -14,7 +13,10 @@ const invalidSelectionMessage: string =
     'You can only add images from media library to gallery.';
 
 export default (id: string): IGallerySource => {
-    const displayMediaLibrary = ($modal: JQuery) => {
+    const displayMediaLibrary = (
+        $modal: JQuery,
+        onAdd: (items: IGalleryItem[]) => void
+    ) => {
         $modal.find(selectors.modalTitle).html(label);
 
         $modal.find(selectors.modalBody).html('');
@@ -33,10 +35,6 @@ export default (id: string): IGallerySource => {
             .off('click')
             .on('click', async () => {
                 if (window.mediaApp.selectedMedias.length) {
-                    const galleryCollection = new GalleryCollection(
-                        $('.gallery > .' + id + '-MediaItems').first()
-                    );
-
                     let items: IGalleryItem[] = [];
                     let isValidImage = true;
 
@@ -65,7 +63,7 @@ export default (id: string): IGallerySource => {
                         return;
                     }
 
-                    galleryCollection.addAll(items);
+                    onAdd(items);
                 }
 
                 window.mediaApp.selectedMedias = [];
@@ -78,8 +76,8 @@ export default (id: string): IGallerySource => {
     return {
         description,
         label,
-        action: () => {
-            displayMediaLibrary($(`.gallery > .${id}-ModalBody`));
+        action: (onAdd: (items: IGalleryItem[]) => void) => {
+            displayMediaLibrary($(`.gallery > .${id}-ModalBody`), onAdd);
         },
     };
 };

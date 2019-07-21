@@ -1,8 +1,8 @@
 import {
     EnumGalleryItemType,
-    GalleryCollection,
     GalleryItemType,
     IGallerySource,
+    IGalleryItem,
 } from '../../models';
 import { imageExists } from './helpers/imageExists';
 import { show } from '../helpers/modal';
@@ -28,7 +28,7 @@ export default (id: string): IGallerySource => {
     return {
         description,
         label,
-        action: () => {
+        action: (onAdd: (items: IGalleryItem[]) => void) => {
             show($(`.gallery > .${id}-ModalBody`), {
                 body,
                 label,
@@ -45,19 +45,17 @@ export default (id: string): IGallerySource => {
                                 return;
                             }
 
-                            const $input = $(
-                                '.gallery > .' + id + '-MediaItems'
-                            ).first();
-
-                            new GalleryCollection($input).add({
-                                type: EnumGalleryItemType.Image,
-                                typeName: GalleryItemType.getName(
-                                    EnumGalleryItemType.Image
-                                ),
-                                thumb: url,
-                                title,
-                                url,
-                            });
+                            onAdd([
+                                {
+                                    type: EnumGalleryItemType.Image,
+                                    typeName: GalleryItemType.getName(
+                                        EnumGalleryItemType.Image
+                                    ),
+                                    thumb: url,
+                                    title,
+                                    url,
+                                },
+                            ]);
 
                             resolve(true);
                         });
