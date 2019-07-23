@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": { "*": ["./Assets/js/types/*"] },
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "strict": true,
+        "noUnusedLocals": true,
+        "module": "commonjs",
+        "target": "es6",
+        "jsx": "react",
+        "esModuleInterop": true,
+        "typeRoots": ["types", "node_modules/@types"]
+    },
+    "include": ["./Assets/js/admin/**/*"]
+}

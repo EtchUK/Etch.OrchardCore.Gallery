@@ -1,19 +1,22 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Moov2.OrchardCore.Gallery.Drivers;
-using Moov2.OrchardCore.Gallery.Models;
+﻿using Etch.OrchardCore.Gallery.Drivers;
+using Etch.OrchardCore.Gallery.Models;
+using Etch.OrchardCore.Gallery.ViewModels;
+using Fluid;
+using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.Data.Migration;
 using OrchardCore.Modules;
 using OrchardCore.ResourceManagement;
 
-namespace Moov2.OrchardCore.Gallery
+namespace Etch.OrchardCore.Gallery
 {
     public class Startup : StartupBase
     {
         static Startup()
         {
-
+            TemplateContext.GlobalMemberAccessStrategy.Register<GalleryPartDisplayViewModel>();
+            TemplateContext.GlobalMemberAccessStrategy.Register<GalleryPartItem>();
         }
 
         public override void ConfigureServices(IServiceCollection services)

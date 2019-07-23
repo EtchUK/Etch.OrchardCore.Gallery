@@ -1,27 +1,42 @@
 {
-  "name": "moov2-orchard-core-gallery",
-  "version": "1.0.0",
-  "description": "Module for [Orchard Core](https://github.com/OrchardCMS/OrchardCore) for displaying a collection of images & videos.",
-  "main": "index.js",
-  "author": "Moov2, Etch",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/moov2/Moov2.OrchardCore.Gallery/issues"
-  },
-  "homepage": "https://github.com/moov2/Moov2.OrchardCore.Gallery#readme",
-  "dependencies": {
-    "lg-video.js": "^1.0.0",
-    "lightgallery.js": "^1.0.2",
-    "browserify": "^14.4.0",
-    "babel-core": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babelify": "^8.0.0",
-    "mkdirp": "^0.5.1",
-    "node-sass": "^4.9.0"
-  },
-  "scripts": {
-    "develop": "npm run js && npm run css",
-    "css": "node-sass --include-path scss ./assets/styles/styles.scss ./wwwroot/css/styles.css",
-    "js": "mkdirp ./wwwroot/js && cross-env NODE_PATH=./node_modules/lightgallery.js/src/js:./node_modules/lg-video.js/dist browserify ./assets/scripts/gallery.js > ./wwwroot/js/bundle.js -t [babelify --presets [es2015] ]"
-  }
+    "name": "etch-orchard-core-gallery",
+    "version": "1.0.0",
+    "description": "[Orchard Core](https://github.com/OrchardCMS/OrchardCore) module for displaying a collection of images & videos.",
+    "main": "index.js",
+    "author": "Etch",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/etchuk/Etch.OrchardCore.Gallery/issues"
+    },
+    "homepage": "https://github.com/etchuk/Etch.OrchardCore.Gallery#readme",
+    "dependencies": {
+        "bootstrap": "^4.3.1",
+        "jquery": "^3.4.0",
+        "jquery-ui": "^1.12.1",
+        "lg-video.js": "^1.0.0",
+        "lightgallery.js": "^1.0.2",
+        "mkdirp": "^0.5.1",
+        "node-sass": "^4.12.0"
+    },
+    "devDependencies": {
+        "@types/bootstrap": "^4.3.0",
+        "@types/jquery": "^3.3.29",
+        "autoprefixer": "^9.5.1",
+        "css-loader": "^2.1.1",
+        "mini-css-extract-plugin": "^0.5.0",
+        "postcss-loader": "^3.0.0",
+        "sass-loader": "^7.1.0",
+        "ts-loader": "^5.4.5",
+        "typescript": "^3.4.5",
+        "vue": "^2.6.10",
+        "vuedraggable": "^2.20.0",
+        "webpack": "^4.31.0",
+        "webpack-cli": "^3.3.2",
+        "webpack-fix-style-only-entries": "^0.2.1"
+    },
+    "scripts": {
+        "build": "webpack",
+        "develop": "webpack --watch",
+        "start": "npm install && npm run develop"
+    }
 }

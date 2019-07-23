@@ -2,13 +2,13 @@ using OrchardCore.Modules.Manifest;
 
 [assembly: Module(
     Name = "Gallery",
-    Author = "Moov2",
-    Website = "https://moov2.com",
+    Author = "Etch UK",
+    Website = "https://etchuk.com",
     Version = "0.0.1"
 )]
 
 [assembly: Feature(
-    Id = "Moov2.OrchardCore.Gallery",
+    Id = "Etch.OrchardCore.Gallery",
     Name = "Gallery",
     Description = "Display a collection of images and videos",
     Category = "Content"

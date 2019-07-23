@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Localization;
-using Moov2.OrchardCore.Gallery.Models;
-using Moov2.OrchardCore.Gallery.ViewModels;
+using Etch.OrchardCore.Gallery.Models;
+using Etch.OrchardCore.Gallery.ViewModels;
 using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Moov2.OrchardCore.Gallery.Drivers
+namespace Etch.OrchardCore.Gallery.Drivers
 {
     public class GalleryPartDisplay : ContentPartDisplayDriver<GalleryPart>
     {
@@ -31,17 +31,17 @@ namespace Moov2.OrchardCore.Gallery.Drivers
 
         public override IDisplayResult Display(GalleryPart part) {
 
-            var partJson = JsonConvert.DeserializeObject<List<GalleryPartItem>>(part.MediaItems).Cast<GalleryPartItem>().ToList();
+            var mediaItems = JsonConvert.DeserializeObject<List<GalleryPartItem>>(part.MediaItems).Cast<GalleryPartItem>().ToList();
 
-            return Initialize<GalleryPartDisplayViewModel>("GalleryPart_Display", model => {
-                model.MediaItems = partJson;
-            }).Location("Footer");
+            return Initialize<GalleryPartDisplayViewModel>("GalleryPart", model => {
+                model.MediaItems = mediaItems;
+            }).Location("Content:10");
         }
 
 
         public override IDisplayResult Edit(GalleryPart part, BuildPartEditorContext context)
         {
-            return Initialize<GalleryPartEditViewModel>("GalleryPart_Fields_Edit", m =>
+            return Initialize<GalleryPartEditViewModel>("GalleryPart_Edit", m =>
             {
                 m.MediaItems = part.MediaItems;
             });
