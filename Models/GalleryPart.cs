@@ -4,6 +4,6 @@ namespace Etch.OrchardCore.Gallery.Models
 {
     public class GalleryPart : ContentPart
     {
-        public string MediaItems { get; set; }
+        public GalleryPartItem[] MediaItems { get; set; } = new GalleryPartItem[] { };
     }
 }
