@@ -1,6 +1,8 @@
 ﻿export enum EnumGalleryItemType {
     Image = 1,
     Video = 2,
+    ExternalImage = 3,
+    LocalImage = 4
 }
 
 export class GalleryItemType {
@@ -10,6 +12,10 @@ export class GalleryItemType {
                 return 'Image';
             case EnumGalleryItemType.Video:
                 return 'Video';
+            case EnumGalleryItemType.ExternalImage:
+                return 'External Image';
+            case EnumGalleryItemType.LocalImage:
+                return 'Local Image';
             default:
                 return '';
         }

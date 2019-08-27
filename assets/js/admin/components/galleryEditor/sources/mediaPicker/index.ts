@@ -51,11 +51,11 @@ export default (id: string): IGallerySource => {
                         items.push({
                             thumb: media.url,
                             title: media.name,
-                            type: EnumGalleryItemType.Image,
+                            type: EnumGalleryItemType.LocalImage,
                             typeName: GalleryItemType.getName(
-                                EnumGalleryItemType.Image
+                                EnumGalleryItemType.LocalImage
                             ),
-                            url: media.url,
+                            url: media.mediaPath,
                         });
                     });
 
