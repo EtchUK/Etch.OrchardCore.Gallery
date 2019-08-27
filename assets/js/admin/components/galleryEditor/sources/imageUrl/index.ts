@@ -42,9 +42,9 @@ export default (id: string): IGallerySource => {
 
                             onAdd([
                                 {
-                                    type: EnumGalleryItemType.Image,
+                                    type: EnumGalleryItemType.ExternalImage,
                                     typeName: GalleryItemType.getName(
-                                        EnumGalleryItemType.Image
+                                        EnumGalleryItemType.ExternalImage
                                     ),
                                     thumb: url,
                                     title: url,
