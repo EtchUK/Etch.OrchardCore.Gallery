@@ -45,7 +45,7 @@ namespace Etch.OrchardCore.Gallery.Drivers
             }
 
             return Initialize<GalleryPartDisplayViewModel>("GalleryPart", model => {
-                model.MediaItems = part.MediaItems.ToList();
+                model.MediaItems = ShapeMediaItems(part.MediaItems);
             }).Location("Content:10");
         }
 
@@ -54,7 +54,7 @@ namespace Etch.OrchardCore.Gallery.Drivers
         {
             return Initialize<GalleryPartEditViewModel>("GalleryPart_Edit", m =>
             {
-                m.MediaItems = JsonConvert.SerializeObject(SetUrls(part.MediaItems));
+                m.MediaItems = JsonConvert.SerializeObject(ShapeMediaItems(part.MediaItems, false));
             });
         }
 
@@ -74,18 +74,36 @@ namespace Etch.OrchardCore.Gallery.Drivers
 
         #region Private Methods
 
-        private GalleryPartItem[] SetUrls(GalleryPartItem[] mediaItems)
+        private string GetThumbnail(GalleryPartItem item)
         {
-            foreach (var item in mediaItems)
+            if (item.Type == (int)GalleryPartType.LocalImage)
             {
-                if (item.Type.ToString() == GalleryPartType.LocalImage.ToString())
-                {
-                    item.Url = _mediaFileStore.MapPathToPublicUrl(item.Url);
-                    item.Thumb = $"{_mediaFileStore.MapPathToPublicUrl(item.Thumb)}?width={ThumbnailDimension}&rmode=crop";
-                }
+                return $"{_mediaFileStore.MapPathToPublicUrl(item.Url)}?width={ThumbnailDimension}&rmode=crop";
             }
 
-            return mediaItems;
+            return item.Url;
+        }
+
+        private string GetUrl(GalleryPartItem item)
+        {
+            if (item.Type == (int)GalleryPartType.LocalImage)
+            {
+                return _mediaFileStore.MapPathToPublicUrl(item.Url);
+            }
+
+            return item.Url;
+        }
+
+        private GalleryPartItemViewModel[] ShapeMediaItems(GalleryPartItem[] mediaItems, bool isDisplay = true)
+        {
+            return mediaItems.Select(x => new GalleryPartItemViewModel
+            {
+                Thumb = GetThumbnail(x),
+                Title = x.Title,
+                Type = x.Type,
+                TypeName = x.TypeName,
+                Url = isDisplay ? GetUrl(x) : x.Url
+            }).ToArray();
         }
 
         #endregion
