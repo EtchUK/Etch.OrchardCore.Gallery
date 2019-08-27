@@ -1,10 +1,9 @@
-﻿using Etch.OrchardCore.Gallery.Models;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 
-namespace Etch.OrchardCore.Gallery.ViewModels {
+namespace Etch.OrchardCore.Gallery.ViewModels
+{
     public class GalleryPartDisplayViewModel {
-        public List<GalleryPartItem> MediaItems { get; set; }
+        public GalleryPartItemViewModel[] MediaItems { get; set; }
 
         public bool HasMediaItems
         {
