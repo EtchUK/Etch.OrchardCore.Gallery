@@ -4,12 +4,12 @@ using OrchardCore.Modules.Manifest;
     Name = "Gallery",
     Author = "Etch UK",
     Website = "https://etchuk.com",
-    Version = "0.0.1"
+    Version = "0.1.0"
 )]
 
 [assembly: Feature(
     Id = "Etch.OrchardCore.Gallery",
     Name = "Gallery",
-    Description = "Display a collection of images and videos",
+    Description = "Display a collection of images and videos.",
     Category = "Content"
 )]
