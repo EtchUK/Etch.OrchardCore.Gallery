@@ -29,7 +29,12 @@ namespace Etch.OrchardCore.Gallery.Drivers
         #endregion
 
 
-        public override IDisplayResult Display(GalleryPart part) {
+        public override IDisplayResult Display(GalleryPart part, BuildPartDisplayContext context) {
+            if (context.DisplayType != "Detail")
+            {
+                return null;
+            }
+
             return Initialize<GalleryPartDisplayViewModel>("GalleryPart", model => {
                 model.MediaItems = part.MediaItems.ToList();
             }).Location("Content:10");
