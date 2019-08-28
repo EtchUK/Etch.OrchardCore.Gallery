@@ -9,6 +9,9 @@ using OrchardCore.DisplayManagement.Views;
 using System.Linq;
 using System.Threading.Tasks;
 using OrchardCore.Media;
+using Etch.OrchardCore.Gallery.Settings;
+using System;
+using OrchardCore.ContentManagement.Metadata;
 
 namespace Etch.OrchardCore.Gallery.Drivers
 {
@@ -22,6 +25,7 @@ namespace Etch.OrchardCore.Gallery.Drivers
 
         #region Dependencies
 
+        private readonly IContentDefinitionManager _contentDefinitionManager;
         private readonly IStringLocalizer<GalleryPartDisplay> T;
         private readonly IMediaFileStore _mediaFileStore;
 
@@ -29,7 +33,8 @@ namespace Etch.OrchardCore.Gallery.Drivers
 
         #region Constructor
 
-        public GalleryPartDisplay(IStringLocalizer<GalleryPartDisplay> localizer, IMediaFileStore mediaFileStore) {
+        public GalleryPartDisplay(IContentDefinitionManager contentDefinitionManager, IStringLocalizer<GalleryPartDisplay> localizer, IMediaFileStore mediaFileStore) {
+            _contentDefinitionManager = contentDefinitionManager;
             T = localizer;
             _mediaFileStore = mediaFileStore;
         }
@@ -44,17 +49,21 @@ namespace Etch.OrchardCore.Gallery.Drivers
                 return null;
             }
 
+            var settings = GetSettings(part);
+
             return Initialize<GalleryPartDisplayViewModel>("GalleryPart", model => {
-                model.MediaItems = ShapeMediaItems(part.MediaItems);
+                model.MediaItems = ShapeMediaItems(settings, part.MediaItems);
             }).Location("Content:10");
         }
 
 
         public override IDisplayResult Edit(GalleryPart part, BuildPartEditorContext context)
         {
+            var settings = GetSettings(part);
+
             return Initialize<GalleryPartEditViewModel>("GalleryPart_Edit", m =>
             {
-                m.MediaItems = JsonConvert.SerializeObject(ShapeMediaItems(part.MediaItems, false));
+                m.MediaItems = JsonConvert.SerializeObject(ShapeMediaItems(settings, part.MediaItems, false));
             });
         }
 
@@ -74,14 +83,21 @@ namespace Etch.OrchardCore.Gallery.Drivers
 
         #region Private Methods
 
-        private string GetThumbnail(GalleryPartItem item)
+        private string GetThumbnail(GalleryPartItem item, GalleryPartSettings settings)
         {
             if (item.Type == (int)GalleryPartType.LocalImage)
             {
-                return $"{_mediaFileStore.MapPathToPublicUrl(item.Url)}?width={ThumbnailDimension}&rmode=crop";
+                return $"{_mediaFileStore.MapPathToPublicUrl(item.Url)}?width={settings.ThumbnailSize}&rmode=crop";
             }
 
             return item.Url;
+        }
+
+        private GalleryPartSettings GetSettings(GalleryPart part)
+        {
+            var contentTypeDefinition = _contentDefinitionManager.GetTypeDefinition(part.ContentItem.ContentType);
+            var contentTypePartDefinition = contentTypeDefinition.Parts.FirstOrDefault(x => string.Equals(x.PartDefinition.Name, nameof(GalleryPart), StringComparison.Ordinal));
+            return contentTypePartDefinition.Settings.ToObject<GalleryPartSettings>();
         }
 
         private string GetUrl(GalleryPartItem item)
@@ -94,11 +110,11 @@ namespace Etch.OrchardCore.Gallery.Drivers
             return item.Url;
         }
 
-        private GalleryPartItemViewModel[] ShapeMediaItems(GalleryPartItem[] mediaItems, bool isDisplay = true)
+        private GalleryPartItemViewModel[] ShapeMediaItems(GalleryPartSettings settings, GalleryPartItem[] mediaItems, bool isDisplay = true)
         {
             return mediaItems.Select(x => new GalleryPartItemViewModel
             {
-                Thumb = GetThumbnail(x),
+                Thumb = GetThumbnail(x, settings),
                 Title = x.Title,
                 Type = x.Type,
                 TypeName = x.TypeName,
