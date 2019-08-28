@@ -1,10 +1,12 @@
 ﻿using Etch.OrchardCore.Gallery.Drivers;
 using Etch.OrchardCore.Gallery.Models;
+using Etch.OrchardCore.Gallery.Settings;
 using Etch.OrchardCore.Gallery.ViewModels;
 using Fluid;
 using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
+using OrchardCore.ContentTypes.Editors;
 using OrchardCore.Data.Migration;
 using OrchardCore.Modules;
 using OrchardCore.ResourceManagement;
@@ -25,6 +27,8 @@ namespace Etch.OrchardCore.Gallery
             services.AddScoped<IResourceManifestProvider, ResourceManifest>();
             services.AddScoped<IContentPartDisplayDriver, GalleryPartDisplay>();
             services.AddSingleton<ContentPart, GalleryPart>();
+
+            services.AddScoped<IContentTypePartDefinitionDisplayDriver, GalleryPartSettingsDriver>();
 
             services.AddScoped<IDataMigration, Migrations>();
         }
