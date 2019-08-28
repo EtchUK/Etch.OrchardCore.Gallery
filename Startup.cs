@@ -16,6 +16,7 @@ namespace Etch.OrchardCore.Gallery
         static Startup()
         {
             TemplateContext.GlobalMemberAccessStrategy.Register<GalleryPartDisplayViewModel>();
+            TemplateContext.GlobalMemberAccessStrategy.Register<GalleryPartItemViewModel>();
             TemplateContext.GlobalMemberAccessStrategy.Register<GalleryPartItem>();
         }
 
