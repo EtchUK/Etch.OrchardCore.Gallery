@@ -87,7 +87,7 @@ namespace Etch.OrchardCore.Gallery.Drivers
         {
             if (item.Type == (int)GalleryPartType.LocalImage)
             {
-                return $"{_mediaFileStore.MapPathToPublicUrl(item.Url)}?width={settings.ThumbnailSize}&rmode=crop";
+                return $"{_mediaFileStore.MapPathToPublicUrl(item.Url)}?width={settings.ThumbnailSize}&height={settings.ThumbnailSize}&rmode=crop";
             }
 
             return item.Url;
