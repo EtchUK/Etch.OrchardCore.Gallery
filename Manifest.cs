@@ -10,6 +10,7 @@ using OrchardCore.Modules.Manifest;
 [assembly: Feature(
     Id = "Etch.OrchardCore.Gallery",
     Name = "Gallery",
+    Dependencies = new[] { "OrchardCore.Media" },
     Description = "Display a collection of images and videos.",
     Category = "Content"
 )]
