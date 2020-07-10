@@ -1,7 +1,9 @@
 export const getEmbedThumb = async (url: string): Promise<string> => {
     const youtubeId = getYoutubeId(url);
     if (youtubeId) {
-        return Promise.resolve('//img.youtube.com/vi/' + youtubeId + '/0.jpg');
+        return Promise.resolve(
+            '//img.youtube.com/vi/' + youtubeId + '/mqdefault.jpg'
+        );
     }
 
     const vimeoId = getVimeoId(url);

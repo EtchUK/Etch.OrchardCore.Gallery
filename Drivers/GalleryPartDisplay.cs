@@ -17,11 +17,6 @@ namespace Etch.OrchardCore.Gallery.Drivers
 {
     public class GalleryPartDisplay : ContentPartDisplayDriver<GalleryPart>
     {
-        #region Constants
-
-        private const int ThumbnailDimension = 280;
-
-        #endregion
 
         #region Dependencies
 
@@ -87,10 +82,10 @@ namespace Etch.OrchardCore.Gallery.Drivers
         {
             if (item.Type == (int)GalleryPartType.LocalImage)
             {
-                return $"{_mediaFileStore.MapPathToPublicUrl(item.Url)}?width={settings.ThumbnailSize}&height={settings.ThumbnailSize}&rmode=crop";
+                return $"{_mediaFileStore.MapPathToPublicUrl(item.Url)}?width={settings.ThumbnailWidth}&height={settings.ThumbnailHeight}&rmode=crop";
             }
 
-            return item.Url;
+            return item.Thumb;
         }
 
         private GalleryPartSettings GetSettings(GalleryPart part)
