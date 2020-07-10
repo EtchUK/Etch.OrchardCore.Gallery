@@ -2,8 +2,10 @@
 {
     public class GalleryPartSettings
     {
-        public const int DefaultThumbnailSize = 260;
+        public const int DefaultThumbnailWidth = 480;
+        public const int DefaultThumbnailHeight = 270;
 
-        public int ThumbnailSize { get; set; } = DefaultThumbnailSize;
+        public int ThumbnailWidth { get; set; } = DefaultThumbnailWidth;
+        public int ThumbnailHeight { get; set; } = DefaultThumbnailHeight;
     }
 }

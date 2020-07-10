@@ -20,7 +20,7 @@ namespace Etch.OrchardCore.Gallery.Settings
         {
             var settings = new GalleryPartSettings();
 
-            if (await context.Updater.TryUpdateModelAsync(settings, Prefix, m => m.ThumbnailSize))
+            if (await context.Updater.TryUpdateModelAsync(settings, Prefix, m => m.ThumbnailWidth))
             {
                 context.Builder.WithSettings(settings);
             }
