@@ -2,8 +2,15 @@
 
 <fieldset class="form-group">
     <div class="row col-sm">
-        <label asp-for="ThumbnailSize">@T["Thumbnail Size"]</label>
-        <input asp-for="ThumbnailSize" type="number" class="form-control" />
-        <span class="hint">@T["Dimension of thumbnails for images served via the media library."]</span>
+        <label asp-for="ThumbnailWidth">@T["Thumbnail Width"]</label>
+        <input asp-for="ThumbnailWidth" type="number" class="form-control" />
+        <span class="hint">@T["Width of thumbnails for images served via the media library."]</span>
+    </div>
+</fieldset>
+<fieldset class="form-group">
+    <div class="row col-sm">
+        <label asp-for="ThumbnailHeight">@T["Thumbnail Height"]</label>
+        <input asp-for="ThumbnailHeight" type="number" class="form-control" />
+        <span class="hint">@T["Height of thumbnails for images served via the media library."]</span>
     </div>
 </fieldset>
