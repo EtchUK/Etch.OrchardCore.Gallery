@@ -55,7 +55,6 @@ export default (id: string): IGallerySource => {
 
                         getEmbedThumb(url)
                             .then((thumb: string) => {
-                                console.log(thumb);
                                 onAdd([
                                     {
                                         type: EnumGalleryItemType.Video,
