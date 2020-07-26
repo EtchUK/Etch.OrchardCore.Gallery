@@ -16,12 +16,14 @@
             "Name": "Gallery",
             "DisplayName": "Gallery",
             "Settings": {
-              "Creatable": "False",
-              "Draftable": "False",
-              "Versionable": "False",
-              "Listable": "False",
-              "Securable": "False",
-              "Stereotype": "Widget"
+              "ContentTypeSettings": {
+                "Creatable": "False",
+                "Draftable": "False",
+                "Versionable": "False",
+                "Listable": "False",
+                "Securable": "False",
+                "Stereotype": "Widget"
+              }
             },
             "ContentTypePartDefinitionRecords": [
               {
