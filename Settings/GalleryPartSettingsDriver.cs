@@ -1,17 +1,27 @@
-﻿using OrchardCore.ContentManagement.Metadata.Models;
+﻿using Etch.OrchardCore.Gallery.Models;
+using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.ContentTypes.Editors;
 using OrchardCore.DisplayManagement.Views;
+using System;
 using System.Threading.Tasks;
 
 namespace Etch.OrchardCore.Gallery.Settings
 {
     public class GalleryPartSettingsDriver : ContentTypePartDefinitionDisplayDriver
     {
-        public override IDisplayResult Edit(ContentTypePartDefinition partDefinition)
+        public override IDisplayResult Edit(ContentTypePartDefinition contentTypePartDefinition)
         {
+            if (!string.Equals(nameof(GalleryPart), contentTypePartDefinition.PartDefinition.Name, StringComparison.Ordinal))
+            {
+                return null;
+            }
+
             return Initialize<GalleryPartSettings>("GalleryPartSettings_Edit", model =>
             {
-                partDefinition.PopulateSettings(model);
+                var settings = contentTypePartDefinition.GetSettings<GalleryPartSettings>();
+
+                model.ThumbnailHeight = settings.ThumbnailHeight;
+                model.ThumbnailWidth = settings.ThumbnailWidth;
             })
            .Location("Content");
         }
@@ -20,12 +30,12 @@ namespace Etch.OrchardCore.Gallery.Settings
         {
             var settings = new GalleryPartSettings();
 
-            if (await context.Updater.TryUpdateModelAsync(settings, Prefix, m => m.ThumbnailWidth))
+            if (await context.Updater.TryUpdateModelAsync(settings, Prefix))
             {
                 context.Builder.WithSettings(settings);
             }
 
-            return Edit(contentTypePartDefinition, context.Updater);
+            return Edit(contentTypePartDefinition);
         }
     }
 }
