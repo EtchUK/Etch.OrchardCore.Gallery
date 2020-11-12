@@ -36,6 +36,10 @@ stages:
             inputs:
               path: ./Etch.OrchardCore.Gallery.csproj
 
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '12.19.0'
+
           - task: DotNetCoreCLI@2
             displayName: "Build module"
             inputs:
