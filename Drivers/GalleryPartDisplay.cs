@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Localization;
-using Etch.OrchardCore.Gallery.Models;
+﻿using Etch.OrchardCore.Gallery.Models;
 using Etch.OrchardCore.Gallery.ViewModels;
 using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
@@ -21,16 +20,14 @@ namespace Etch.OrchardCore.Gallery.Drivers
         #region Dependencies
 
         private readonly IContentDefinitionManager _contentDefinitionManager;
-        private readonly IStringLocalizer<GalleryPartDisplay> T;
         private readonly IMediaFileStore _mediaFileStore;
 
         #endregion
 
         #region Constructor
 
-        public GalleryPartDisplay(IContentDefinitionManager contentDefinitionManager, IStringLocalizer<GalleryPartDisplay> localizer, IMediaFileStore mediaFileStore) {
+        public GalleryPartDisplay(IContentDefinitionManager contentDefinitionManager, IMediaFileStore mediaFileStore) {
             _contentDefinitionManager = contentDefinitionManager;
-            T = localizer;
             _mediaFileStore = mediaFileStore;
         }
 
@@ -54,11 +51,9 @@ namespace Etch.OrchardCore.Gallery.Drivers
 
         public override IDisplayResult Edit(GalleryPart part, BuildPartEditorContext context)
         {
-            var settings = GetSettings(part);
-
             return Initialize<GalleryPartEditViewModel>("GalleryPart_Edit", m =>
             {
-                m.MediaItems = JsonConvert.SerializeObject(ShapeMediaItems(settings, part.MediaItems, false));
+                m.MediaItems = JsonConvert.SerializeObject(ShapeMediaItems(GetSettings(part), part.MediaItems, false));
             });
         }
 
@@ -90,9 +85,10 @@ namespace Etch.OrchardCore.Gallery.Drivers
 
         private GalleryPartSettings GetSettings(GalleryPart part)
         {
-            var contentTypeDefinition = _contentDefinitionManager.GetTypeDefinition(part.ContentItem.ContentType);
-            var contentTypePartDefinition = contentTypeDefinition.Parts.FirstOrDefault(x => string.Equals(x.PartDefinition.Name, nameof(GalleryPart), StringComparison.Ordinal));
-            return contentTypePartDefinition.Settings.ToObject<GalleryPartSettings>();
+            return _contentDefinitionManager.GetTypeDefinition(part.ContentItem.ContentType)
+                ?.Parts
+                .FirstOrDefault(x => string.Equals(x.PartDefinition.Name, nameof(GalleryPart), StringComparison.Ordinal))
+                ?.GetSettings<GalleryPartSettings>();
         }
 
         private string GetUrl(GalleryPartItem item)
