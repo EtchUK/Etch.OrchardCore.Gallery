@@ -25,8 +25,8 @@ namespace Etch.OrchardCore.Gallery
         public override void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IResourceManifestProvider, ResourceManifest>();
-            services.AddScoped<IContentPartDisplayDriver, GalleryPartDisplay>();
-            services.AddSingleton<ContentPart, GalleryPart>();
+            services.AddContentPart<GalleryPart>()
+                .UseDisplayDriver<GalleryPartDisplay>();
 
             services.AddScoped<IContentTypePartDefinitionDisplayDriver, GalleryPartSettingsDriver>();
 
