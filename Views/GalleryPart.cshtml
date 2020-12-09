@@ -13,10 +13,10 @@
 
 @if (Model.HasMediaItems)
 {
-    <ul class="list list--gallery js-gallery">
+    <ul class="gallery js-gallery">
         @foreach (var media in Model.MediaItems)
         {
-            <li class="list__item list__item--gallery-@(media.TypeName.ToLower())">
+            <li class="gallery__item gallery__item--@(media.TypeName.ToLower())">
                 <a href="@media.Url">
                     <img src="@media.Thumb" title="@media.Title" alt="@media.Title" />
                 </a>
