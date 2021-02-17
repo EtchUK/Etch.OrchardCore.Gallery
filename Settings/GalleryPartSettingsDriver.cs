@@ -9,25 +9,30 @@ namespace Etch.OrchardCore.Gallery.Settings
 {
     public class GalleryPartSettingsDriver : ContentTypePartDefinitionDisplayDriver
     {
-        public override IDisplayResult Edit(ContentTypePartDefinition contentTypePartDefinition)
+        public override IDisplayResult Edit(ContentTypePartDefinition model)
         {
-            if (!string.Equals(nameof(GalleryPart), contentTypePartDefinition.PartDefinition.Name, StringComparison.Ordinal))
+            if (!string.Equals(nameof(GalleryPart), model.PartDefinition.Name, StringComparison.Ordinal))
             {
                 return null;
             }
 
-            return Initialize<GalleryPartSettings>("GalleryPartSettings_Edit", model =>
+            return Initialize<GalleryPartSettings>("GalleryPartSettings_Edit", settings =>
             {
-                var settings = contentTypePartDefinition.GetSettings<GalleryPartSettings>();
+                var galleryPartSettings = model.GetSettings<GalleryPartSettings>();
 
-                model.ThumbnailHeight = settings.ThumbnailHeight;
-                model.ThumbnailWidth = settings.ThumbnailWidth;
+                settings.ThumbnailHeight = galleryPartSettings.ThumbnailHeight;
+                settings.ThumbnailWidth = galleryPartSettings.ThumbnailWidth;
             })
            .Location("Content");
         }
 
-        public override async Task<IDisplayResult> UpdateAsync(ContentTypePartDefinition contentTypePartDefinition, UpdateTypePartEditorContext context)
+        public override async Task<IDisplayResult> UpdateAsync(ContentTypePartDefinition model, UpdateTypePartEditorContext context)
         {
+            if (!string.Equals(nameof(GalleryPart), model.PartDefinition.Name, StringComparison.Ordinal))
+            {
+                return null;
+            }
+
             var settings = new GalleryPartSettings();
 
             if (await context.Updater.TryUpdateModelAsync(settings, Prefix))
@@ -35,7 +40,7 @@ namespace Etch.OrchardCore.Gallery.Settings
                 context.Builder.WithSettings(settings);
             }
 
-            return Edit(contentTypePartDefinition);
+            return Edit(model);
         }
     }
 }
