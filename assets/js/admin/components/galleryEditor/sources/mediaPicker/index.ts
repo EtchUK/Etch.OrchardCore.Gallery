@@ -12,6 +12,8 @@ const label: string = 'Add via Media Library';
 const invalidSelectionMessage: string =
     'You can only add images from media library to gallery.';
 
+let $cachedMediaApp: JQuery<HTMLElement>;
+
 export default (id: string): IGallerySource => {
     const displayMediaLibrary = (
         $modal: JQuery,
@@ -22,9 +24,11 @@ export default (id: string): IGallerySource => {
         $modal.find(selectors.modalBody).html('');
         $modal.find(selectors.modalDialog).addClass('media-modal');
 
-        $(selectors.mediaApp)
-            .detach()
-            .appendTo($modal.find(selectors.modalBody));
+        if (!$cachedMediaApp) {
+            $cachedMediaApp = $(selectors.mediaApp).detach();
+        }
+
+        $cachedMediaApp.appendTo($modal.find(selectors.modalBody));
 
         $(selectors.mediaApp).show();
 
