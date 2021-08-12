@@ -44,10 +44,11 @@ namespace Etch.OrchardCore.Gallery.Drivers
             var settings = GetSettings(part);
 
             return Initialize<GalleryPartDisplayViewModel>("GalleryPart", model => {
+                model.ContentItem = part.ContentItem;
                 model.MediaItems = ShapeMediaItems(settings, part.MediaItems);
+                model.Part = part;
             }).Location("Content:10");
         }
-
 
         public override IDisplayResult Edit(GalleryPart part, BuildPartEditorContext context)
         {
