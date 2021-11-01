@@ -1,6 +1,6 @@
 {
     "name": "etch-orchard-core-gallery",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "[Orchard Core](https://github.com/OrchardCMS/OrchardCore) module for displaying a collection of images & videos.",
     "author": "Etch",
     "license": "MIT",
