@@ -7,13 +7,12 @@ export const getEmbedThumb = async (url: string): Promise<string> => {
     }
 
     const vimeoId = getVimeoId(url);
-    return $.getJSON(
-        '//www.vimeo.com/api/v2/video/' + vimeoId + '.json?callback=?',
-        { format: 'json' }
+    return fetch(
+        'https://vimeo.com/api/oembed.json?url=https%3A//vimeo.com/' + vimeoId
     ).then((data: any) => {
-        if (data && data[0]) {
-            return data[0].thumbnail_large;
-        }
+        return data.json();
+    }).then((data: any) => {
+        return data.thumbnail_url;
     });
 };
 

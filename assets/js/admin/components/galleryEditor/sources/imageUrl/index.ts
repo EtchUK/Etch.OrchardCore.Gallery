@@ -25,11 +25,14 @@ export default (id: string): IGallerySource => {
         description,
         label,
         action: (onAdd: (items: IGalleryItem[]) => void) => {
-            show($(`.gallery > .${id}-ModalBody`), {
+            const modalElement = document.querySelector(`.gallery > .${id}-ModalBody`) as Element;
+
+            show(modalElement, {
                 body,
                 label,
                 onComplete: (): Promise<boolean> => {
-                    const url = $(`#${urlFieldId}`).val() as string;
+                    const urlElement = document.getElementById(`${urlFieldId}`) as HTMLInputElement;
+                    const url = urlElement?.value as string;
 
                     return new Promise(resolve => {
                         imageExists(url).then((isValid: boolean) => {

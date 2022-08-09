@@ -36,16 +36,21 @@ export default (id: string): IGallerySource => {
         description,
         label,
         action: (onAdd: (items: IGalleryItem[]) => void) => {
-            show($(`.gallery > .${id}-ModalBody`), {
+            const modalElement = document.querySelector(`.gallery > .${id}-ModalBody`) as Element;
+
+            show(modalElement, {
                 body,
                 label,
                 onComplete: (): Promise<boolean> => {
                     return new Promise((resolve) => {
-                        const url = $(`#${embedUrlFieldId}`).val() as string;
-                        const title = $(`#${titleFieldId}`).val() as string;
-                        const thumbnailUrl = $(
-                            `#${thumbnailUrlFieldId}`
-                        ).val() as string;
+                        const urlElement = document.getElementById(`${embedUrlFieldId}`) as HTMLInputElement;
+                        const url = urlElement?.value as string;
+
+                        const titleElement = document.getElementById(`${titleFieldId}`) as HTMLInputElement;
+                        const title = titleElement?.value as string;
+
+                        const thumbnailUrlElement = document.getElementById(thumbnailUrlFieldId) as HTMLInputElement;
+                        const thumbnailUrl = thumbnailUrlElement?.value as string;
 
                         if (!getYoutubeId(url) && !getVimeoId(url)) {
                             alert(invalidUrlMessage);

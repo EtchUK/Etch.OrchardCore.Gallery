@@ -1,4 +1,5 @@
 import selectors from './selectors';
+import bootstrap from 'bootstrap';
 
 export interface IShowModalOptions {
     body: string;
@@ -7,41 +8,41 @@ export interface IShowModalOptions {
     onComplete: () => Promise<boolean>;
 }
 
-export const hide = (modal: JQuery<HTMLElement> | null) => {
-    if (modal !== null) {
-        modal.modal('hide');
-    }
-};
+export const show = ($modalElement: Element, options: IShowModalOptions) => {
+    var $modal = new bootstrap.Modal($modalElement)
 
-export const show = ($modal: JQuery, options: IShowModalOptions) => {
-    const $cancelButtons = $modal.find(selectors.modalCancelButton);
-    const $okButton = $modal.find(selectors.modalSubmitButton).first();
-    let modal: JQuery<HTMLElement> | null = null;
+    const modalTitle = $modalElement.querySelector('.modal-title') as Element;
+    modalTitle.textContent = options.label;
 
-    $modal.find(selectors.modalDialog).removeClass('media-modal');
+    const modalBody = $modalElement.querySelector('.modal-body') as Element;
+    modalBody.innerHTML = options.body;
 
-    $modal.find(selectors.modalTitle).html(options.label);
-    $modal.find(selectors.modalBody).html(options.body);
+    $modalElement.querySelector(selectors.modalDialog)?.classList.remove('media-modal');
 
-    $cancelButtons.each((index: number) => {
-        const $cancelButton = $($cancelButtons[index]);
-        $cancelButton.off('click').on('click', () => {
-            hide(modal);
-        });
-    });
+    let $okButton = $modalElement.querySelector(selectors.modalSubmitButton) as Element;
+    clearEventListeners($okButton);
+    $okButton = $modalElement.querySelector(selectors.modalSubmitButton) as Element;
 
-    $okButton.off('click').on('click', () => {
+    $okButton.addEventListener('click', () => {
         if (!options.onComplete) {
-            hide(modal);
+            $modal.hide();
+            return;
         }
 
         options.onComplete().then((isSuccess: Boolean) => {
             if (isSuccess) {
-                hide(modal);
+                $modal.hide();
+                return;
             }
         });
     });
 
     $modal.show();
-    modal = $modal.modal();
 };
+
+// this function essentially clones node and replaces with itself
+// as a result it clears all existing eventlisteners
+// similar to $elem.off() function in jquery
+export const clearEventListeners = (element: Element) => {
+    element.outerHTML = element.outerHTML;
+}
