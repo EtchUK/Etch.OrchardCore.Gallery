@@ -39,12 +39,12 @@ export default (el: HTMLElement, initialData: IGalleryItem[]): void => {
             },
         },
 
-        mounted: function() {
+        mounted: function () {
             this.items = initialData;
         },
 
         methods: {
-            action: function(source: IGallerySource): void {
+            action: function (source: IGallerySource): void {
                 const self = this;
 
                 source.action(
@@ -54,11 +54,11 @@ export default (el: HTMLElement, initialData: IGalleryItem[]): void => {
                 );
             },
 
-            remove: function(index: number): void {
+            remove: function (index: number): void {
                 this.items.splice(index, 1);
             },
 
-            updatePreview: function() {
+            updatePreview: function () {
                 this.$nextTick(() => {
                     $(document).trigger('contentpreview:render');
                 });
@@ -66,7 +66,7 @@ export default (el: HTMLElement, initialData: IGalleryItem[]): void => {
         },
 
         watch: {
-            items: function() {
+            items: function () {
                 this.updatePreview();
             },
         },

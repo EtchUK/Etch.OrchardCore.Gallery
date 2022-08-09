@@ -5,6 +5,8 @@ import {
     IGallerySource,
 } from '../../models';
 import selectors from '../helpers/selectors';
+import bootstrap from 'bootstrap';
+import { clearEventListeners } from '../helpers/modal';
 
 const description: string = 'Add media via media library';
 const label: string = 'Add via Media Library';
@@ -12,76 +14,85 @@ const label: string = 'Add via Media Library';
 const invalidSelectionMessage: string =
     'You can only add images from media library to gallery.';
 
-let $cachedMediaApp: JQuery<HTMLElement>;
+let $cachedMediaApp: Element;
 
 export default (id: string): IGallerySource => {
     const displayMediaLibrary = (
-        $modal: JQuery,
+        $modalElement: Element,
         onAdd: (items: IGalleryItem[]) => void
     ) => {
-        $modal.find(selectors.modalTitle).html(label);
+        var $modal = new bootstrap.Modal($modalElement)
 
-        $modal.find(selectors.modalBody).html('');
-        $modal.find(selectors.modalDialog).addClass('media-modal');
+        const modalTitle = $modalElement.querySelector('.modal-title') as Element;
+        modalTitle.textContent = label;
 
+        const modalBody = $modalElement.querySelector('.modal-body') as Element;
+        modalBody.innerHTML = '';
+
+        $modalElement.querySelector(selectors.modalDialog)?.classList.add('media-modal');
+
+        const $mediaAppElement = document.querySelector(selectors.mediaApp) as HTMLElement
         if (!$cachedMediaApp) {
-            $cachedMediaApp = $(selectors.mediaApp).detach();
+            $cachedMediaApp = $mediaAppElement.parentNode?.removeChild($mediaAppElement) as Element;
         }
 
-        $cachedMediaApp.appendTo($modal.find(selectors.modalBody));
+        modalBody.appendChild($cachedMediaApp);
 
-        $(selectors.mediaApp).show();
+        // mediaApp has "display: none" as default.
+        // This replaces jquery show() function albeit poorly.
+        $mediaAppElement.style.display = 'block';
 
-        const modal = $modal.modal();
+        clearEventListeners($modalElement.querySelector(selectors.modalSubmitButton) as Element)
+        const $okButton = $modalElement.querySelector(selectors.modalSubmitButton) as Element
+        $okButton.addEventListener('click', async () => {
+            if (window.mediaApp.selectedMedias.length) {
+                let items: IGalleryItem[] = [];
+                let isValidImage = true;
 
-        $modal
-            .find(selectors.modalSubmitButton)
-            .off('click')
-            .on('click', async () => {
-                if (window.mediaApp.selectedMedias.length) {
-                    let items: IGalleryItem[] = [];
-                    let isValidImage = true;
+                window.mediaApp.selectedMedias.forEach((media: any) => {
+                    // check if user has selected anything other than image then show an error
+                    if (!media.mime.startsWith('image')) {
+                        alert(invalidSelectionMessage);
 
-                    window.mediaApp.selectedMedias.forEach((media: any) => {
-                        // check if user has selected anything other than image then show an error
-                        if (!media.mime.startsWith('image')) {
-                            alert(invalidSelectionMessage);
-
-                            items = [];
-                            isValidImage = false;
-                            return;
-                        }
-
-                        items.push({
-                            thumb: media.url,
-                            title: media.name,
-                            type: EnumGalleryItemType.LocalImage,
-                            typeName: GalleryItemType.getName(
-                                EnumGalleryItemType.LocalImage
-                            ),
-                            url: media.mediaPath,
-                        });
-                    });
-
-                    if (!isValidImage) {
+                        items = [];
+                        isValidImage = false;
                         return;
                     }
 
-                    onAdd(items);
+                    items.push({
+                        thumb: media.url,
+                        title: media.name,
+                        type: EnumGalleryItemType.LocalImage,
+                        typeName: GalleryItemType.getName(
+                            EnumGalleryItemType.LocalImage
+                        ),
+                        url: media.mediaPath,
+                    });
+                });
+
+                if (!isValidImage) {
+                    return;
                 }
 
-                window.mediaApp.selectedMedias = [];
+                onAdd(items);
+                $modal.hide();
+            }
 
-                modal.modal('hide');
-                return true;
-            });
+            window.mediaApp.selectedMedias = [];
+
+            return true;
+        });
+
+        $modal.show();
     };
 
     return {
         description,
         label,
         action: (onAdd: (items: IGalleryItem[]) => void) => {
-            displayMediaLibrary($(`.gallery > .${id}-ModalBody`), onAdd);
+
+            const modalElement = document.querySelector(`.gallery > .${id}-ModalBody`) as Element;
+            displayMediaLibrary(modalElement, onAdd);
         },
     };
 };
