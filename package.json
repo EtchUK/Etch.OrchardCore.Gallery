@@ -15,7 +15,7 @@
         "lg-video.js": "^1.0.0",
         "lightgallery.js": "^1.0.2",
         "mkdirp": "^0.5.1",
-        "node-sass": "^4.13.1"
+        "sass": "^1.54.4"
     },
     "devDependencies": {
         "@types/bootstrap": "^5.2.0",
