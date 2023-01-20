@@ -15,12 +15,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="scripts\**" />
-    <EmbeddedResource Remove="scripts\**" />
-    <None Remove="scripts\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="OrchardCore.ContentManagement" Version="1.5.0" />
     <PackageReference Include="OrchardCore.ContentManagement.Display" Version="1.5.0" />
     <PackageReference Include="OrchardCore.ContentTypes" Version="1.5.0" />
@@ -33,12 +27,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="azure-pipelines.yml" />
+    <EmbeddedResource Remove=".editorconfig" />
+    <EmbeddedResource Remove=".eslintrc.js" />
+    <EmbeddedResource Remove=".gitignore" />
+    <EmbeddedResource Remove="nuget.config" />
+    <EmbeddedResource Remove="package.json" />
+    <EmbeddedResource Remove="package-lock.json" />
+    <EmbeddedResource Remove=".prettierrc" />
+    <EmbeddedResource Remove="README.md" />
+    <EmbeddedResource Remove="tsconfig.json" />
+    <EmbeddedResource Remove="webpack.config.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
-  <Target Name="BuildStaticAssetsForRelease" BeforeTargets="BeforeBuild" Condition="'$(Configuration)' == 'Release'">
-    <Exec Command="npm install" />
-    <Exec Command="npm run build" />
-  </Target>
-  
 </Project>
