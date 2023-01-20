@@ -4,7 +4,7 @@ Module for [Orchard Core](https://github.com/OrchardCMS/OrchardCore) for display
 
 ## Build Status
 
-[![Build Status](https://secure.travis-ci.org/etchuk/Etch.OrchardCore.Gallery.png?branch=master)](http://travis-ci.org/etchuk/Etch.OrchardCore.Gallery) [![NuGet](https://img.shields.io/nuget/v/Etch.OrchardCore.Gallery.svg)](https://www.nuget.org/packages/Etch.OrchardCore.Gallery)
+[![NuGet](https://img.shields.io/nuget/v/Etch.OrchardCore.Gallery.svg)](https://www.nuget.org/packages/Etch.OrchardCore.Gallery)
 
 ## Orchard Core Reference
 
