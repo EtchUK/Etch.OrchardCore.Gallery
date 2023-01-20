@@ -7,18 +7,18 @@ import {
 import { imageExists } from './helpers/imageExists';
 import { show } from '../helpers/modal';
 
-const urlFieldId: string = 'imageUrl';
+const urlFieldId = 'imageUrl';
 
-const body: string = `<fieldset class="form-group">
+const body = `<fieldset class="form-group">
     <label for="${urlFieldId}">URL</label>
     <input type="text" id="${urlFieldId}" name="${urlFieldId}" class="form-control">
     <p class="hint">URL to image hosted on the web (e.g. https://via.placeholder.com/150).
 </fieldset>`;
 
-const description: string = 'Add image to gallery by specify URL';
-const label: string = 'Add via Image URL';
+const description = 'Add image to gallery by specify URL';
+const label = 'Add via Image URL';
 
-const invalidUrlMessage: string = 'Please enter a valid image URL';
+const invalidUrlMessage = 'Please enter a valid image URL';
 
 export default (id: string): IGallerySource => {
     return {
@@ -31,7 +31,7 @@ export default (id: string): IGallerySource => {
                 onComplete: (): Promise<boolean> => {
                     const url = $(`#${urlFieldId}`).val() as string;
 
-                    return new Promise(resolve => {
+                    return new Promise((resolve) => {
                         imageExists(url).then((isValid: boolean) => {
                             // check if URL is not valid show error
                             if (!isValid) {

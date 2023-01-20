@@ -35,7 +35,7 @@ export const show = ($modal: JQuery, options: IShowModalOptions) => {
             hide(modal);
         }
 
-        options.onComplete().then((isSuccess: Boolean) => {
+        options.onComplete().then((isSuccess: boolean) => {
             if (isSuccess) {
                 hide(modal);
             }

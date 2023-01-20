@@ -1,7 +1,7 @@
 import { addFromMediaPicker, addImageUrl, addVideoEmbed } from './sources';
 import { IGalleryItem, IGallerySource } from './models';
 
-import draggable = require('vuedraggable');
+import * as draggable from 'vuedraggable';
 import Vue from 'vue';
 
 declare global {
@@ -39,26 +39,22 @@ export default (el: HTMLElement, initialData: IGalleryItem[]): void => {
             },
         },
 
-        mounted: function() {
+        mounted: function () {
             this.items = initialData;
         },
 
         methods: {
-            action: function(source: IGallerySource): void {
-                const self = this;
-
-                source.action(
-                    (items: IGalleryItem[]): void => {
-                        self.items.push(...items);
-                    }
-                );
+            action: function (source: IGallerySource): void {
+                source.action((items: IGalleryItem[]): void => {
+                    this.items.push(...items);
+                });
             },
 
-            remove: function(index: number): void {
+            remove: function (index: number): void {
                 this.items.splice(index, 1);
             },
 
-            updatePreview: function() {
+            updatePreview: function () {
                 this.$nextTick(() => {
                     $(document).trigger('contentpreview:render');
                 });
@@ -66,7 +62,7 @@ export default (el: HTMLElement, initialData: IGalleryItem[]): void => {
         },
 
         watch: {
-            items: function() {
+            items: function () {
                 this.updatePreview();
             },
         },
