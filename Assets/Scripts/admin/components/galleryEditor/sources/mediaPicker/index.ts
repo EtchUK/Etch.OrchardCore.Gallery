@@ -6,10 +6,10 @@ import {
 } from '../../models';
 import selectors from '../helpers/selectors';
 
-const description: string = 'Add media via media library';
-const label: string = 'Add via Media Library';
+const description = 'Add media via media library';
+const label = 'Add via Media Library';
 
-const invalidSelectionMessage: string =
+const invalidSelectionMessage =
     'You can only add images from media library to gallery.';
 
 let $cachedMediaApp: JQuery<HTMLElement>;

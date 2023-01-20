@@ -7,10 +7,10 @@ import {
 import { show } from '../helpers/modal';
 import { getYoutubeId, getVimeoId, getEmbedThumb } from './helpers/vendor';
 
-const embedUrlFieldId: string = 'embedUrl';
-const titleFieldId: string = 'title';
-const thumbnailUrlFieldId: string = 'thumbnailUrl';
-const body: string = `<fieldset class="form-group">
+const embedUrlFieldId = 'embedUrl';
+const titleFieldId = 'title';
+const thumbnailUrlFieldId = 'thumbnailUrl';
+const body = `<fieldset class="form-group">
     <label for="${embedUrlFieldId}">URL</label>
     <input type="text" id="${embedUrlFieldId}" name="${embedUrlFieldId}" class="form-control">
     <p class="hint">URL to video on <a href="https://vimeo.com">Vimeo</a> or <a href="https://youtube.com">YouTube</a> (e.g. https://www.youtube.com/watch?v=TorVk3Hxm7Q).</p>
@@ -24,12 +24,12 @@ const body: string = `<fieldset class="form-group">
 <p class="hint">URL for a video thumbnail (if one is not provided, a default will be used from either Vimeo or YouTube respectively)</p>
 </fieldset>`;
 
-const description: string =
+const description =
     'Add video by specifying URL to embed from third party sites (e.g. YouTube)';
 
-const label: string = 'Add via Video Embed URL';
+const label = 'Add via Video Embed URL';
 
-const invalidUrlMessage: string = 'Please enter a valid YouTube/Vimeo URL';
+const invalidUrlMessage = 'Please enter a valid YouTube/Vimeo URL';
 
 export default (id: string): IGallerySource => {
     return {
@@ -69,7 +69,7 @@ export default (id: string): IGallerySource => {
 
                                 resolve(true);
                             })
-                            .catch((error) => {
+                            .catch(() => {
                                 resolve(false);
                             });
                     });

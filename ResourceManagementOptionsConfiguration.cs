@@ -13,11 +13,11 @@ namespace Etch.OrchardCore.Gallery {
 
             _manifest
                 .DefineStyle("Gallery.Styles")
-                .SetUrl("/Etch.OrchardCore.Gallery/Styles/styles.css");
+                .SetUrl("/Etch.OrchardCore.Gallery/css/styles.css");
 
             _manifest
                 .DefineScript("Gallery.Scripts")
-                .SetUrl("/Etch.OrchardCore.Gallery/Scripts/gallery.js");
+                .SetUrl("/Etch.OrchardCore.Gallery/js/gallery.js");
         }
 
         public void Configure(ResourceManagementOptions options)

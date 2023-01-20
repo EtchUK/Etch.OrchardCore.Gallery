@@ -27,7 +27,7 @@ const gallery = ($el: Element): void => {
 
 const init = (): void => {
     const selector = '.js-gallery';
-    let $elements = document.querySelectorAll(selector);
+    const $elements = document.querySelectorAll(selector);
 
     for (let i = 0; i < $elements.length; ++i) {
         gallery($elements[i]);
