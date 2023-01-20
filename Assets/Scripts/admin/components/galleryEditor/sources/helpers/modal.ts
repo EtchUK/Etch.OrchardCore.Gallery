@@ -1,3 +1,4 @@
+import bootstrap from 'bootstrap';
 import selectors from './selectors';
 
 export interface IShowModalOptions {
@@ -7,16 +8,16 @@ export interface IShowModalOptions {
     onComplete: () => Promise<boolean>;
 }
 
-export const hide = (modal: JQuery<HTMLElement> | null) => {
+export const hide = (modal: bootstrap.Modal | null) => {
     if (modal !== null) {
-        modal.modal('hide');
+        modal.hide();
     }
 };
 
 export const show = ($modal: JQuery, options: IShowModalOptions) => {
     const $cancelButtons = $modal.find(selectors.modalCancelButton);
     const $okButton = $modal.find(selectors.modalSubmitButton).first();
-    let modal: JQuery<HTMLElement> | null = null;
+    const modal = new bootstrap.Modal($modal[0]);
 
     $modal.find(selectors.modalDialog).removeClass('media-modal');
 
@@ -26,22 +27,21 @@ export const show = ($modal: JQuery, options: IShowModalOptions) => {
     $cancelButtons.each((index: number) => {
         const $cancelButton = $($cancelButtons[index]);
         $cancelButton.off('click').on('click', () => {
-            hide(modal);
+            modal.hide();
         });
     });
 
     $okButton.off('click').on('click', () => {
         if (!options.onComplete) {
-            hide(modal);
+            modal.hide();
         }
 
         options.onComplete().then((isSuccess: boolean) => {
             if (isSuccess) {
-                hide(modal);
+                modal.hide();
             }
         });
     });
 
-    $modal.show();
-    modal = $modal.modal();
+    modal.show();
 };

@@ -1,3 +1,4 @@
+import bootstrap from 'bootstrap';
 import {
     EnumGalleryItemType,
     GalleryItemType,
@@ -32,12 +33,17 @@ export default (id: string): IGallerySource => {
 
         $(selectors.mediaApp).show();
 
-        const modal = $modal.modal();
+        const modal = new bootstrap.Modal($modal[0]);
+        modal.show();
+
+        window.console.log($modal.find(selectors.modalSubmitButton));
 
         $modal
             .find(selectors.modalSubmitButton)
             .off('click')
             .on('click', async () => {
+                window.console.log('here?!?');
+
                 if (window.mediaApp.selectedMedias.length) {
                     let items: IGalleryItem[] = [];
                     let isValidImage = true;
@@ -72,7 +78,7 @@ export default (id: string): IGallerySource => {
 
                 window.mediaApp.selectedMedias = [];
 
-                modal.modal('hide');
+                modal.hide();
                 return true;
             });
     };
