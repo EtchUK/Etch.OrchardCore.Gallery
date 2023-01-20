@@ -109,8 +109,5 @@ module.exports = [
                 filename: '../css/[name].css',
             }),
         ],
-        resolve: {
-            extensions: ['.tsx', '.ts', '.js'],
-        },
     },
 ];
