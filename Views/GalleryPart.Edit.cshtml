@@ -1,4 +1,5 @@
-﻿@using Etch.OrchardCore.Gallery.ViewModels;
+@using Etch.OrchardCore.Gallery.ViewModels;
+
 @model GalleryPartEditViewModel
 
 <script asp-src="~/OrchardCore.Media/Scripts/media.js" asp-name="media" at="Foot" depends-on="admin, vuejs, sortable, vuedraggable, jQuery-ui"></script>
@@ -11,13 +12,13 @@
     initializeGalleryEditor(document.getElementById('@Html.IdFor(m => m)'));
 </script>
 
-<fieldset class="form-group gallery" id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.MediaItems)">
-    <div class="btn-group form-group">
-        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<fieldset class="mb-3 pt-3 gallery" id="@Html.IdFor(m => m)" data-for="@Html.IdFor(m => m.MediaItems)">
+    <div class="btn-group mb-3">
+        <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Add Media
         </button>
 
-        <div class="dropdown-menu">
+        <div class="dropdown-menu mb-3">
             <button type="button" class="dropdown-item btn-sm" v-for="source in sources" v-on:click="action(source)">{{source.label}}</button>
         </div>
     </div>
@@ -45,16 +46,14 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title"></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
                 <div class="modal-body"></div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary js-modal-ok" data-accept="modal">@T["OK"]</button>
-                    <button type="button" class="btn btn-secondary js-modal-cancel" data-dismiss="modal">@T["Cancel"]</button>
+                    <button type="button" class="btn btn-primary js-modal-ok" data-bs-accept="modal">@T["OK"]</button>
+                    <button type="button" class="btn btn-secondary js-modal-cancel" data-bs-dismiss="modal">@T["Cancel"]</button>
                 </div>
             </div>
         </div>

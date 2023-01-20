@@ -1,8 +1,8 @@
 export default {
     mediaApp: '#mediaApp',
     modalBody: '.modal-body',
-    modalCancelButton: 'button[data-dismiss="modal"]',
+    modalCancelButton: 'button[data-bs-dismiss="modal"]',
     modalDialog: '.modal-dialog',
-    modalSubmitButton: 'button[data-accept="modal"]',
+    modalSubmitButton: 'button[data-bs-accept="modal"]',
     modalTitle: '.modal-title',
 };
