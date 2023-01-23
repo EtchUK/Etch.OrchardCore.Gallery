@@ -1,5 +1,4 @@
-﻿//import 'bootstrap';
-import 'jquery';
+﻿import 'jquery';
 
 import galleryEditor from './components/galleryEditor';
 
