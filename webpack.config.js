@@ -1,6 +1,5 @@
 const autoprefixer = require('autoprefixer');
 const ESLintPlugin = require('eslint-webpack-plugin');
-const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
@@ -104,7 +103,6 @@ module.exports = [
                 extensions: ['ts'],
             }),
             new RemoveEmptyScriptsPlugin(),
-            new FixStyleOnlyEntriesPlugin(),
             new MiniCssExtractPlugin({
                 filename: '../css/[name].css',
             }),
