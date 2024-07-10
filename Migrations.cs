@@ -1,4 +1,4 @@
-﻿using OrchardCore.ContentManagement.Metadata;
+using OrchardCore.ContentManagement.Metadata;
 using OrchardCore.ContentManagement.Metadata.Settings;
 using OrchardCore.Data.Migration;
 using OrchardCore.Recipes.Services;
@@ -29,7 +29,7 @@ namespace Etch.OrchardCore.Gallery
 
         public async Task<int> CreateAsync()
         {
-            _contentDefinitionManager.AlterPartDefinition("GalleryPart", part => part
+            await _contentDefinitionManager.AlterPartDefinitionAsync("GalleryPart", part => part
                 .Reusable()
                 .Attachable()
                 .WithDescription("Create a collection of media items."));

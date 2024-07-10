@@ -1,4 +1,4 @@
-﻿using Etch.OrchardCore.Gallery.Models;
+using Etch.OrchardCore.Gallery.Models;
 using Etch.OrchardCore.Gallery.ViewModels;
 using Newtonsoft.Json;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
@@ -35,13 +35,13 @@ namespace Etch.OrchardCore.Gallery.Drivers
 
         #region Overrides
 
-        public override IDisplayResult Display(GalleryPart part, BuildPartDisplayContext context) {
+        public override async Task<IDisplayResult> DisplayAsync(GalleryPart part, BuildPartDisplayContext context) {
             if (context.DisplayType != "Detail")
             {
                 return null;
             }
 
-            var settings = GetSettings(part);
+            var settings = await GetSettingsAsync(part);
 
             return Initialize<GalleryPartDisplayViewModel>("GalleryPart", model => {
                 model.ContentItem = part.ContentItem;
@@ -50,11 +50,12 @@ namespace Etch.OrchardCore.Gallery.Drivers
             }).Location("Content:10");
         }
 
-        public override IDisplayResult Edit(GalleryPart part, BuildPartEditorContext context)
+        public override async Task<IDisplayResult> EditAsync(GalleryPart part, BuildPartEditorContext context)
         {
+            var settings = await GetSettingsAsync(part);
             return Initialize<GalleryPartEditViewModel>("GalleryPart_Edit", m =>
             {
-                m.MediaItems = JsonConvert.SerializeObject(ShapeMediaItems(GetSettings(part), part.MediaItems, false));
+                m.MediaItems = JsonConvert.SerializeObject(ShapeMediaItems(settings, part.MediaItems, false));
             });
         }
 
@@ -84,9 +85,10 @@ namespace Etch.OrchardCore.Gallery.Drivers
             return item.Thumb;
         }
 
-        private GalleryPartSettings GetSettings(GalleryPart part)
+        private async Task<GalleryPartSettings> GetSettingsAsync(GalleryPart part)
         {
-            return _contentDefinitionManager.GetTypeDefinition(part.ContentItem.ContentType)
+            var typeDefinition = await _contentDefinitionManager.GetTypeDefinitionAsync(part.ContentItem.ContentType);
+            return typeDefinition
                 ?.Parts
                 .FirstOrDefault(x => string.Equals(x.PartDefinition.Name, nameof(GalleryPart), StringComparison.Ordinal))
                 ?.GetSettings<GalleryPartSettings>();
